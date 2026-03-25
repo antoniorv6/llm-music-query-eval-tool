@@ -1,0 +1,43 @@
+{
+  "name": "evaluation-framework",
+  "version": "1.0.0",
+  "description": "Evaluation framework for LLM music notation analysis",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "start": "node ./dist/server/entry.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.17.0",
+  "dependencies": {
+    "@astrojs/node": "^10.0.3",
+    "@astrojs/react": "^5.0.1",
+    "@astrojs/svelte": "^8.0.3",
+    "@supabase/supabase-js": "^2.100.0",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.0.8",
+    "chart.js": "^4.5.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "dompurify": "^3.3.3",
+    "framer-motion": "^12.38.0",
+    "isomorphic-dompurify": "^3.6.0",
+    "marked": "^17.0.5",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "skills": "^1.4.5",
+    "svelte": "^5.55.0",
+    "tailwind-merge": "^3.5.0",
+    "tailwindcss": "^4.2.2",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3"
+  }
+}

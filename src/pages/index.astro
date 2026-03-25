@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Inicio">
+  <div id="redirect-check" class="flex items-center justify-center min-h-screen">
+    <div class="text-surface-400 text-lg">Cargando...</div>
+  </div>
+</Layout>
+
+<script>
+  const key = localStorage.getItem('evaluator_key');
+  if (key) {
+    window.location.href = '/dashboard';
+  } else {
+    window.location.href = '/login';
+  }
+</script>

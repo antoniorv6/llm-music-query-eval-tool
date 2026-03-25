@@ -1,0 +1,7 @@
+node_modules
+dist
+.claude
+.agents
+.DS_Store
+*.md
+!CLAUDE.md

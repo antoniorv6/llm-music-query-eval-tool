@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { EvaluationView } from '../../components/react/EvaluationView';
+
+const { image } = Astro.params;
+const imageFilename = decodeURIComponent(image || '');
+---
+
+<Layout title={`Evaluar - ${imageFilename}`}>
+  <EvaluationView imageFilename={imageFilename} client:load />
+</Layout>
