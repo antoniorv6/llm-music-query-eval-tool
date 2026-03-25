@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { validateEvaluatorKey } from "../../lib/supabase";
 import { useAppStore } from "../../lib/store";
+import { canAccessDashboard } from "../../lib/types";
 import { BlurFade } from "../magicui/blur-fade";
 import { ShineBorder } from "../magicui/shine-border";
 
@@ -24,7 +25,8 @@ export function LoginForm() {
     if (evaluator) {
       setCurrentEvaluator(evaluator);
       localStorage.setItem("evaluator_key", key.trim());
-      window.location.href = "/dashboard";
+      // Administradores van directo al panel de análisis; el resto al dashboard de evaluación
+      window.location.href = canAccessDashboard(evaluator) ? "/dashboard" : "/admin";
     } else {
       setError("Clave no válida");
       setLoading(false);

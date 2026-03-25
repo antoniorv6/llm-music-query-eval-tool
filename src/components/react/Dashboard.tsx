@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import { validateEvaluatorKey, getEvaluations } from "../../lib/supabase";
+import { validateEvaluatorKey, getEvaluations, getAssignedImages } from "../../lib/supabase";
 import {
   countTotalEvaluations,
   getImageList,
@@ -13,6 +13,7 @@ import { NumberTicker } from "../magicui/number-ticker";
 import { ThemeToggle } from "./ThemeToggle";
 import { Toaster } from "sileo";
 import type { ResponsesData, Evaluator, Evaluation } from "../../lib/types";
+import { canAccessAdmin, canAccessDashboard } from "../../lib/types";
 import { cn } from "../../lib/cn";
 
 export function Dashboard() {
@@ -21,17 +22,19 @@ export function Dashboard() {
   const [responses, setResponses] = useState<ResponsesData | null>(null);
   const [userEvaluations, setUserEvaluations] = useState<Evaluation[]>([]);
 
-  const { setCurrentEvaluator, setEvaluations, setResponsesData } = useAppStore();
+  const { setCurrentEvaluator, setEvaluations, setResponsesData, setAssignedImages } = useAppStore();
 
-  const totalRequired = useMemo(
-    () => (responses ? countTotalEvaluations(responses) : 0),
-    [responses]
-  );
-  const totalCompleted = userEvaluations.length;
+  const [assignedImages, setLocalAssignedImages] = useState<string[]>([]);
+
   const images = useMemo(
-    () => (responses ? getImageList(responses) : []),
-    [responses]
+    () => (responses ? getImageList(responses).filter((img) => assignedImages.includes(img)) : []),
+    [responses, assignedImages]
   );
+  const totalRequired = useMemo(() => {
+    if (!responses || assignedImages.length === 0) return 0;
+    return assignedImages.reduce((sum, img) => sum + countImageEvaluations(responses, img), 0);
+  }, [responses, assignedImages]);
+  const totalCompleted = userEvaluations.length;
   const percentage = useMemo(
     () => totalRequired > 0 ? Math.round((totalCompleted / totalRequired) * 100) : 0,
     [totalCompleted, totalRequired]
@@ -87,18 +90,27 @@ export function Dashboard() {
         return;
       }
 
+      // Administradores puros no tienen acceso al dashboard de evaluación
+      if (!canAccessDashboard(evaluator)) {
+        window.location.href = "/admin";
+        return;
+      }
+
       setEvalData(evaluator);
       setCurrentEvaluator(evaluator);
 
-      const [responsesRes, evals] = await Promise.all([
+      const [responsesRes, evals, assigned] = await Promise.all([
         fetch("/api/responses").then((r) => r.json()),
         getEvaluations(evaluator.id),
+        getAssignedImages(evaluator.id),
       ]);
 
       setResponses(responsesRes as ResponsesData);
       setResponsesData(responsesRes);
       setUserEvaluations(evals);
       setEvaluations(evals);
+      setLocalAssignedImages(assigned);
+      setAssignedImages(assigned);
       setLoading(false);
     }
     init();
@@ -138,7 +150,7 @@ export function Dashboard() {
           </div>
           <div className="flex items-center gap-4">
             <span className="text-sm text-surface-400 hidden sm:inline">{evalData.name}</span>
-            {evalData.is_admin && (
+            {canAccessAdmin(evalData) && (
               <a href="/admin" className="text-xs text-ui-amber font-medium uppercase tracking-widest transition-colors opacity-80 hover:opacity-100">
                 Admin
               </a>

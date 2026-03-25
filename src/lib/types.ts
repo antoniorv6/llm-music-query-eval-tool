@@ -46,11 +46,23 @@ export interface ResponsesData {
   [imageFilename: string]: ImageQuestions;
 }
 
+export type UserRole = 'administrador' | 'evaluador' | 'dual';
+
 export interface Evaluator {
   id: string;
   key: string;
   name: string;
-  is_admin: boolean;
+  role: UserRole;
+}
+
+/** Returns true if the evaluator can access the admin panel (/admin). */
+export function canAccessAdmin(ev: Evaluator): boolean {
+  return ev.role === 'administrador' || ev.role === 'dual';
+}
+
+/** Returns true if the evaluator can access the evaluation dashboard (/dashboard). */
+export function canAccessDashboard(ev: Evaluator): boolean {
+  return ev.role === 'evaluador' || ev.role === 'dual';
 }
 
 export interface Evaluation {
@@ -75,3 +87,10 @@ export interface EvaluatorProgress {
 // ── Backwards-compatible alias ──────────────────────────
 // Some components still reference "Question" expecting the simple shape.
 export type Question = SimpleQuestion;
+
+export interface SampleAssignment {
+  id?: string;
+  evaluator_id: string;
+  image_filename: string;
+  assigned_at?: string;
+}

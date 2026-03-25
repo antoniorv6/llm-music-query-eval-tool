@@ -3,11 +3,16 @@
 
 -- Table: evaluators
 -- Stores evaluator accounts. Each evaluator authenticates with a unique key.
+-- Roles: 'administrador' | 'evaluador' | 'dual'
+--   administrador → only /admin panel
+--   evaluador     → only /dashboard and /evaluate/*
+--   dual          → both panels
 CREATE TABLE IF NOT EXISTS evaluators (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   key TEXT UNIQUE NOT NULL,
   name TEXT NOT NULL,
-  is_admin BOOLEAN DEFAULT false,
+  role TEXT NOT NULL DEFAULT 'evaluador'
+    CHECK (role IN ('administrador', 'evaluador', 'dual')),
   created_at TIMESTAMPTZ DEFAULT now()
 );
 

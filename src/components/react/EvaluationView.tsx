@@ -4,6 +4,7 @@ import {
   validateEvaluatorKey,
   getEvaluations,
   upsertEvaluation,
+  getAssignedImages,
 } from "../../lib/supabase";
 import {
   countTotalEvaluations,
@@ -139,10 +140,17 @@ export function EvaluationView({ imageFilename }: EvaluationViewProps) {
       setEvalData(evaluator);
       setCurrentEvaluator(evaluator);
 
-      const [responsesRes, evals] = await Promise.all([
+      const [responsesRes, evals, assigned] = await Promise.all([
         fetch("/api/responses").then((r) => r.json()),
         getEvaluations(evaluator.id),
+        getAssignedImages(evaluator.id),
       ]);
+
+      // If this image is not assigned to the evaluator, redirect to dashboard
+      if (!assigned.includes(imageFilename)) {
+        window.location.href = "/dashboard";
+        return;
+      }
 
       const data = responsesRes as ResponsesData;
       setResponses(data);

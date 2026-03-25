@@ -3,21 +3,29 @@
 --
 -- Keys are random UUIDs used as access tokens.
 -- Share each key privately with the corresponding evaluator.
+--
+-- Roles:
+--   administrador → only sees /admin panel
+--   evaluador     → only sees /dashboard and /evaluate/*
+--   dual          → sees both panels
 
--- Admin (Antonio)
-INSERT INTO evaluators (key, name, is_admin) VALUES
-  ('adm-a1b2c3d4-e5f6-7890-abcd-ef1234567890', 'Antonio', true);
+-- Administrador
+INSERT INTO evaluators (key, name, role) VALUES
+  ('adm-a1b2c3d4-e5f6-7890-abcd-ef1234567890', 'Antonio', 'administrador');
 
--- Evaluator 1
-INSERT INTO evaluators (key, name, is_admin) VALUES
-  (gen_random_uuid(), 'Noelia', true);
+-- Duales (acceso a evaluación + panel de análisis)
+INSERT INTO evaluators (key, name, role) VALUES
+  (gen_random_uuid(), 'Jorge', 'dual');
 
--- Evaluator 2
-INSERT INTO evaluators (key, name, is_admin) VALUES
-  (gen_random_uuid(), 'Guillermo', false);
+INSERT INTO evaluators (key, name, role) VALUES
+  (gen_random_uuid(), 'Noelia', 'dual');
 
-INSERT INTO evaluators (key, name, is_admin) VALUES
-  (gen_random_uuid(), 'José Manuel', false);
+-- Evaluadores
+INSERT INTO evaluators (key, name, role) VALUES
+  (gen_random_uuid(), 'Guillermo', 'evaluador');
+
+INSERT INTO evaluators (key, name, role) VALUES
+  (gen_random_uuid(), 'José Manuel', 'evaluador');
 
 
 -- ⚠️  IMPORTANT: Change the keys above before deploying to production.
