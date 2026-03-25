@@ -48,7 +48,7 @@ export function CarouselView({
       <div className="flex items-center justify-between mb-3">
         <button
           onClick={prev}
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-surface-800/60 border border-surface-700/40 rounded-md text-surface-400 hover:text-surface-100 hover:border-accent-500/25 text-sm cursor-pointer transition-colors"
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-surface-800/60 border border-surface-700/40 rounded-md text-surface-400 hover:text-surface-100 hover:border-amber-500/25 text-sm cursor-pointer transition-colors"
         >
           <svg
             className="w-4 h-4"
@@ -81,7 +81,7 @@ export function CarouselView({
                   i === currentIndex
                     ? "bg-surface-300"
                     : evaluations.has(responses[i].modelo)
-                    ? "bg-accent-500/50"
+                    ? "bg-amber-500/50"
                     : "bg-surface-700"
                 )}
                 aria-label={`Ir al modelo ${i + 1}`}
@@ -92,7 +92,7 @@ export function CarouselView({
 
         <button
           onClick={next}
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-surface-800/60 border border-surface-700/40 rounded-md text-surface-400 hover:text-surface-100 hover:border-accent-500/25 text-sm cursor-pointer transition-colors"
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-surface-800/60 border border-surface-700/40 rounded-md text-surface-400 hover:text-surface-100 hover:border-amber-500/25 text-sm cursor-pointer transition-colors"
         >
           Siguiente
           <svg
@@ -123,6 +123,7 @@ export function CarouselView({
           >
             <ModelResponseCard
               response={current}
+              index={currentIndex}
               questionType={questionType}
               evaluation={evaluations.get(current.modelo) || null}
               onScore={(score) => onScore(current.modelo, score)}

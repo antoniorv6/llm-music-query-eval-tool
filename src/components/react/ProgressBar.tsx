@@ -16,7 +16,7 @@ export function ProgressBar({
 }: ProgressBarProps) {
   const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
   const barHeight = size === "sm" ? "h-1.5" : size === "md" ? "h-2.5" : "h-4";
-  const barColor = percentage === 100 ? "bg-green-500" : "bg-accent-500";
+  const barColor = percentage === 100 ? "bg-teal-500" : "bg-amber-500";
 
   return (
     <div className="w-full">
@@ -28,7 +28,7 @@ export function ProgressBar({
           <span
             className={cn(
               "text-xs font-medium tabular-nums",
-              percentage === 100 ? "text-green-400" : "text-surface-300"
+              percentage === 100 ? "text-ui-teal" : "text-surface-300"
             )}
           >
             {percentage}%

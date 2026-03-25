@@ -10,11 +10,15 @@ INSERT INTO evaluators (key, name, is_admin) VALUES
 
 -- Evaluator 1
 INSERT INTO evaluators (key, name, is_admin) VALUES
-  ('eval-11111111-2222-3333-4444-555555555555', 'Evaluador 1', false);
+  (gen_random_uuid(), 'Noelia', true);
 
 -- Evaluator 2
 INSERT INTO evaluators (key, name, is_admin) VALUES
-  ('eval-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee', 'Evaluador 2', false);
+  (gen_random_uuid(), 'Guillermo', false);
+
+INSERT INTO evaluators (key, name, is_admin) VALUES
+  (gen_random_uuid(), 'José Manuel', false);
+
 
 -- ⚠️  IMPORTANT: Change the keys above before deploying to production.
 --    You can generate new ones with: SELECT gen_random_uuid();

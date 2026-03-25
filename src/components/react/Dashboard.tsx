@@ -9,9 +9,9 @@ import {
 import { useAppStore } from "../../lib/store";
 import { BlurFade } from "../magicui/blur-fade";
 import { MagicCard } from "../magicui/magic-card";
-import { ShimmerButton } from "../magicui/shimmer-button";
 import { NumberTicker } from "../magicui/number-ticker";
-import { AnimatedShinyText } from "../magicui/animated-shiny-text";
+import { ThemeToggle } from "./ThemeToggle";
+import { Toaster } from "sileo";
 import type { ResponsesData, Evaluator, Evaluation } from "../../lib/types";
 import { cn } from "../../lib/cn";
 
@@ -113,13 +113,7 @@ export function Dashboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-surface-950">
-        <motion.div
-          animate={{ opacity: [0.4, 1, 0.4] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="text-surface-400 text-sm font-serif italic"
-        >
-          Cargando...
-        </motion.div>
+        <div className="w-5 h-5 rounded-full border-2 border-surface-700 border-t-amber-500 animate-spin" />
       </div>
     );
   }
@@ -128,26 +122,28 @@ export function Dashboard() {
 
   return (
     <div className="min-h-screen bg-surface-950">
+      <Toaster position="bottom-right" />
       {/* Header */}
-      <header className="sticky top-0 z-20 bg-surface-900/95 backdrop-blur-sm border-b border-surface-700">
-        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+      <header className="sticky top-0 z-20 bg-surface-900/90 backdrop-blur-md border-b border-surface-700/40">
+        <div className="max-w-6xl mx-auto px-6 h-[52px] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="flex items-center justify-center w-6 h-6 rounded bg-accent-600/10 border border-accent-500/20 shrink-0">
-              <svg className="w-3.5 h-3.5 text-accent-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75}>
+            <div className="flex items-center justify-center w-6 h-6 rounded icon-badge-amber border shrink-0">
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
               </svg>
             </div>
-            <AnimatedShinyText shimmerWidth={120} className="font-serif text-[15px] font-semibold text-surface-100 tracking-tight">
+            <span className="font-serif text-[15px] font-normal text-surface-100 tracking-tight">
               Music LLM Eval
-            </AnimatedShinyText>
+            </span>
           </div>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-4">
             <span className="text-sm text-surface-400 hidden sm:inline">{evalData.name}</span>
             {evalData.is_admin && (
-              <a href="/admin" className="text-xs text-accent-600 hover:text-accent-500 font-medium uppercase tracking-widest transition-colors">
+              <a href="/admin" className="text-xs text-ui-amber font-medium uppercase tracking-widest transition-colors opacity-80 hover:opacity-100">
                 Admin
               </a>
             )}
+            <ThemeToggle />
             <button onClick={handleLogout} className="text-xs text-surface-500 hover:text-surface-300 cursor-pointer uppercase tracking-widest transition-colors">
               Salir
             </button>
@@ -159,11 +155,11 @@ export function Dashboard() {
         {/* Progress hero */}
         <BlurFade delay={0.05} duration={0.5} inView>
           <MagicCard
-            gradientColor="#4F46E5"
-            gradientOpacity={0.08}
-            className="bg-surface-900 border border-surface-700 rounded-xl overflow-hidden card-elevated mb-10"
+            gradientColor="#C8A85A"
+            gradientOpacity={0.06}
+            className="card-glass rounded-[20px] overflow-hidden mb-10"
           >
-            <div className="p-7 flex flex-col sm:flex-row sm:items-start gap-6 sm:gap-10">
+            <div className="p-8 flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10">
               {/* Big percentage */}
               <div className="shrink-0">
                 <div className="font-serif text-6xl font-semibold text-surface-100 leading-none tabular-nums flex items-baseline gap-1">
@@ -175,13 +171,13 @@ export function Dashboard() {
                 </p>
               </div>
 
-              <div className="hidden sm:block w-px self-stretch bg-surface-700" />
+              <div className="hidden sm:block w-px self-stretch bg-surface-700/60" />
 
               {/* Stats */}
               <div className="flex flex-col justify-center gap-3 flex-1">
                 <div className="flex items-center gap-2.5">
-                  <div className="flex items-center justify-center w-5 h-5 rounded-full bg-green-500/15 shrink-0">
-                    <svg className="w-3 h-3 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <div className="flex items-center justify-center w-5 h-5 rounded-full bg-teal-500/15 shrink-0">
+                    <svg className="w-3 h-3 text-ui-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                     </svg>
                   </div>
@@ -217,20 +213,18 @@ export function Dashboard() {
               {/* CTA */}
               <div className="flex items-center sm:ml-auto">
                 {firstIncomplete ? (
-                  <ShimmerButton
+                  <motion.button
+                    whileTap={{ scale: 0.96 }}
                     onClick={() => { window.location.href = `/evaluate/${encodeURIComponent(firstIncomplete)}`; }}
-                    background="rgba(79, 70, 229, 1)"
-                    borderRadius="8px"
-                    shimmerDuration="2.5s"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold"
+                    className="inline-flex items-center gap-2 h-9 px-4 rounded-lg bg-accent-500 hover:bg-accent-600 border border-amber-500/40 text-white text-[13px] font-medium cursor-pointer shadow-sm shadow-amber-500/20 transition-all duration-150"
                   >
                     Continuar
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                     </svg>
-                  </ShimmerButton>
+                  </motion.button>
                 ) : (
-                  <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-500/10 border border-green-500/25 text-green-600 text-sm font-semibold rounded-lg">
+                  <div className="inline-flex items-center gap-2 px-5 py-2.5 cta-teal border text-sm font-medium rounded-full">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                     </svg>
@@ -241,12 +235,12 @@ export function Dashboard() {
             </div>
 
             {/* Full-width progress bar */}
-            <div className="h-1 bg-surface-800">
+            <div className="h-[3px] bg-surface-800">
               <motion.div
-                className={cn("h-1", percentage === 100 ? "bg-green-500" : "bg-accent-600")}
+                className={cn("h-[3px]", percentage === 100 ? "bg-teal-500" : "bg-amber-500")}
                 initial={{ width: 0 }}
                 animate={{ width: `${percentage}%` }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.25 }}
               />
             </div>
           </MagicCard>
@@ -256,7 +250,7 @@ export function Dashboard() {
         <BlurFade delay={0.15} duration={0.4} inView>
           <div className="flex items-center gap-3 mb-5">
             <h2 className="font-serif text-lg font-semibold text-surface-200 shrink-0">Partituras</h2>
-            <span className="inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-accent-100 text-accent-700 text-xs font-medium tabular-nums">
+            <span className="inline-flex items-center justify-center px-2 py-0.5 rounded-full badge-amber text-xs font-medium tabular-nums border">
               {images.length}
             </span>
             <div className="flex-1 h-px bg-surface-700" />
@@ -281,15 +275,11 @@ export function Dashboard() {
                 ? Math.round((progress.completed / progress.total) * 100)
                 : 0;
 
-              const borderColor = status === "done"
-                ? "border-green-500/30 hover:border-green-500/50"
+              const borderClass = status === "done"
+                ? "border-teal-500/25 hover:border-teal-500/45"
                 : status === "partial"
-                ? "border-amber-400/30 hover:border-amber-400/50"
-                : "border-surface-700 hover:border-accent-500/30";
-
-              const gradientColor = status === "done" ? "#10B981"
-                : status === "partial" ? "#FBBF24"
-                : "#4F46E5";
+                ? "border-amber-400/25 hover:border-amber-400/45"
+                : "border-surface-700/60 hover:border-amber-500/20";
 
               return (
                 <motion.a
@@ -298,14 +288,13 @@ export function Dashboard() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.04, duration: 0.3, ease: "easeOut" }}
-                  whileHover={{ y: -2 }}
+                  whileHover={{ y: -3, transition: { duration: 0.18, ease: [0.25, 0.46, 0.45, 0.94] } }}
+                  whileTap={{ scale: 0.97 }}
                 >
-                  <MagicCard
-                    gradientColor={gradientColor}
-                    gradientOpacity={0.1}
+                  <div
                     className={cn(
-                      "group h-full bg-surface-900 border rounded-xl overflow-hidden card-elevated flex flex-col",
-                      borderColor
+                      "group h-full bg-surface-900/80 backdrop-blur-sm border rounded-[18px] overflow-hidden card-elevated flex flex-col transition-all duration-200",
+                      borderClass
                     )}
                   >
                     {/* Thumbnail */}
@@ -314,14 +303,14 @@ export function Dashboard() {
                         src={`/api/images/${imageFilename}`}
                         alt={imageFilename}
                         className={cn(
-                          "w-full h-full object-contain p-3 transition-all duration-300 group-hover:scale-[1.02]",
+                          "w-full h-full object-contain p-3 transition-all duration-300 group-hover:scale-[1.03]",
                           status === "done" ? "opacity-75 group-hover:opacity-95" : "opacity-90 group-hover:opacity-100"
                         )}
                         loading="lazy"
                       />
                       {/* Status badge */}
                       {status === "done" && (
-                        <div className="absolute top-2 right-2 flex items-center gap-1 px-1.5 py-0.5 bg-green-500/90 backdrop-blur-sm rounded-full">
+                        <div className="absolute top-2 right-2 flex items-center gap-1 px-1.5 py-0.5 bg-teal-500/90 backdrop-blur-sm rounded-full">
                           <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                           </svg>
@@ -337,24 +326,24 @@ export function Dashboard() {
 
                     {/* Footer */}
                     <div className={cn(
-                      "shrink-0 border-t px-3 py-2",
-                      status === "done" ? "border-green-500/20 bg-green-500/3"
-                        : status === "partial" ? "border-amber-400/20 bg-amber-400/3"
-                        : "border-surface-700"
+                      "shrink-0 border-t px-3 py-2.5",
+                      status === "done" ? "border-teal-500/15 bg-teal-500/[0.03]"
+                        : status === "partial" ? "border-amber-400/15 bg-amber-400/[0.03]"
+                        : "border-surface-700/50"
                     )}>
                       <p className="text-[11px] font-mono text-surface-500 truncate leading-tight mb-1.5">
                         {imageFilename}
                       </p>
-                      <div className="w-full h-0.5 bg-surface-800 rounded-full overflow-hidden">
+                      <div className="w-full h-[2px] bg-surface-800 rounded-full overflow-hidden">
                         <motion.div
-                          className={cn("h-0.5 rounded-full", status === "done" ? "bg-green-500" : "bg-accent-600")}
+                          className={cn("h-[2px] rounded-full", status === "done" ? "bg-teal-500" : "bg-amber-500")}
                           initial={{ width: 0 }}
                           animate={{ width: `${pct}%` }}
                           transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 + i * 0.02 }}
                         />
                       </div>
                     </div>
-                  </MagicCard>
+                  </div>
                 </motion.a>
               );
             })}

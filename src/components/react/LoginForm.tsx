@@ -3,10 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { validateEvaluatorKey } from "../../lib/supabase";
 import { useAppStore } from "../../lib/store";
 import { BlurFade } from "../magicui/blur-fade";
-import { ShimmerButton } from "../magicui/shimmer-button";
-import { DotPattern } from "../magicui/dot-pattern";
-import { Meteors } from "../magicui/meteors";
-import { AnimatedShinyText } from "../magicui/animated-shiny-text";
 import { ShineBorder } from "../magicui/shine-border";
 
 export function LoginForm() {
@@ -41,48 +37,26 @@ export function LoginForm() {
 
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-surface-950 px-4 overflow-hidden">
-      {/* Animated dot background */}
-      <DotPattern
-        width={24}
-        height={24}
-        cx={1}
-        cy={1}
-        cr={1.1}
-        className="opacity-40"
-      />
-
-      {/* Subtle meteor shower */}
-      <Meteors number={8} minDuration={6} maxDuration={14} />
-
-      {/* Radial gradient vignette */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 70% at 50% 50%, transparent 0%, transparent 40%, var(--color-surface-950) 80%)",
-        }}
-      />
-
       {/* Ambient glow behind card */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-accent-500/[0.06] blur-3xl pointer-events-none" />
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full bg-amber-500/[0.06] blur-[100px] pointer-events-none" />
 
       <div className="relative w-full max-w-sm z-10">
         <BlurFade delay={0} duration={0.5}>
           <ShineBorder
-            borderRadius={14}
-            borderWidth={1.5}
-            duration={10}
-            shineColor={["#6366F1", "#818CF8", "#C7D2FE", "#6366F1"]}
+            borderRadius={22}
+            borderWidth={1}
+            duration={20}
+            shineColor={["rgba(200,168,90,0.15)", "rgba(200,168,90,0.05)", "rgba(200,168,90,0.15)"]}
           >
-            <div className="bg-surface-900/95 backdrop-blur-sm rounded-[12px] p-8">
+            <div className="card-glass rounded-[22px] p-10">
 
               {/* Branding */}
               <BlurFade delay={0.05} duration={0.45}>
-                <div className="mb-6">
-                  <div className="flex items-center gap-2.5 mb-2">
-                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent-600/10 border border-accent-500/20 shrink-0">
+                <div className="mb-8">
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <div className="flex items-center justify-center w-9 h-9 rounded-xl icon-badge-amber border shrink-0">
                       <svg
-                        className="w-4 h-4 text-accent-500"
+                        className="w-4.5 h-4.5"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -95,13 +69,8 @@ export function LoginForm() {
                         />
                       </svg>
                     </div>
-                    <h1 className="font-serif text-[1.65rem] font-semibold tracking-tight">
-                      <AnimatedShinyText
-                        shimmerWidth={140}
-                        className="text-surface-100"
-                      >
-                        Music LLM Eval
-                      </AnimatedShinyText>
+                    <h1 className="font-serif text-[1.75rem] font-normal tracking-tight text-surface-100 leading-tight">
+                      Music LLM Eval
                     </h1>
                   </div>
                   <p className="text-sm text-surface-400 font-serif italic pl-0.5">
@@ -112,16 +81,16 @@ export function LoginForm() {
 
               {/* Staff divider */}
               <BlurFade delay={0.1} duration={0.4}>
-                <div className="staff-divider mb-7" />
+                <div className="staff-divider mb-8" />
               </BlurFade>
 
               {/* Form */}
               <BlurFade delay={0.15} duration={0.4}>
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div>
                     <label
                       htmlFor="key-input"
-                      className="block text-xs font-medium text-surface-500 uppercase tracking-widest mb-2"
+                      className="block text-sm text-surface-400 mb-1.5"
                     >
                       Clave de acceso
                     </label>
@@ -133,7 +102,7 @@ export function LoginForm() {
                       onKeyDown={handleKeyDown}
                       placeholder="Introduce tu clave..."
                       disabled={loading}
-                      className="w-full px-3.5 py-2.5 bg-surface-850 border border-surface-700 rounded-lg text-surface-200 placeholder-surface-600 focus:outline-none focus:border-accent-500 focus:ring-2 focus:ring-accent-500/20 disabled:opacity-50 text-sm transition-all"
+                      className="w-full px-4 py-3 bg-surface-850 border border-surface-700 rounded-xl text-surface-200 placeholder-surface-600 focus:outline-none focus:border-amber-500/60 focus:ring-2 focus:ring-amber-500/15 disabled:opacity-50 text-sm transition-all font-mono"
                     />
                   </div>
 
@@ -144,7 +113,7 @@ export function LoginForm() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -4, scale: 0.98 }}
                         transition={{ duration: 0.2 }}
-                        className="px-3.5 py-2.5 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm flex items-center gap-2"
+                        className="px-3.5 py-2.5 bg-red-950/50 border border-red-800/60 rounded-lg text-red-400 text-sm flex items-center gap-2"
                       >
                         <svg
                           className="w-3.5 h-3.5 shrink-0"
@@ -164,13 +133,10 @@ export function LoginForm() {
                     )}
                   </AnimatePresence>
 
-                  <ShimmerButton
+                  <button
                     onClick={handleLogin}
                     disabled={loading}
-                    background="rgba(79, 70, 229, 1)"
-                    borderRadius="8px"
-                    shimmerDuration="2.5s"
-                    className="w-full py-2.5 text-sm font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-full bg-accent-500 hover:bg-accent-600 active:scale-[0.98] text-white text-sm font-medium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
                   >
                     {loading ? (
                       <span className="inline-flex items-center justify-center gap-2">
@@ -195,13 +161,13 @@ export function LoginForm() {
                     ) : (
                       "Acceder"
                     )}
-                  </ShimmerButton>
+                  </button>
                 </div>
               </BlurFade>
 
               {/* Footer hint */}
               <BlurFade delay={0.25} duration={0.4}>
-                <p className="mt-5 text-center text-xs text-surface-600">
+                <p className="mt-6 text-center text-[13px] text-surface-600">
                   Acceso restringido a evaluadores autorizados
                 </p>
               </BlurFade>

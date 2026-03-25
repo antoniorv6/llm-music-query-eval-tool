@@ -5,10 +5,13 @@ import { isThreadQuestion } from './types';
  * Count the total number of individual model responses that need evaluation.
  * For thread questions, each sub-question's responses count separately.
  */
+const EXCLUDED_QUESTION_IDS = new Set(["3"]);
+
 export function countTotalEvaluations(data: ResponsesData): number {
   let count = 0;
   for (const imageKey of Object.keys(data)) {
     for (const questionKey of Object.keys(data[imageKey])) {
+      if (EXCLUDED_QUESTION_IDS.has(questionKey)) continue;
       count += countEntryResponses(data[imageKey][questionKey]);
     }
   }
@@ -24,6 +27,7 @@ export function countImageEvaluations(data: ResponsesData, imageFilename: string
   if (!questions) return 0;
   let count = 0;
   for (const questionKey of Object.keys(questions)) {
+    if (EXCLUDED_QUESTION_IDS.has(questionKey)) continue;
     count += countEntryResponses(questions[questionKey]);
   }
   return count;
@@ -48,6 +52,7 @@ export function getEvalUnitIds(data: ResponsesData, imageFilename: string): stri
   if (!questions) return [];
   const ids: string[] = [];
   for (const qId of Object.keys(questions)) {
+    if (EXCLUDED_QUESTION_IDS.has(qId)) continue;
     const entry = questions[qId];
     if (isThreadQuestion(entry)) {
       for (const sub of entry.thread) {

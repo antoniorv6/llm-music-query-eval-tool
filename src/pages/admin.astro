@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import AnalyticsDashboard from '../components/admin/AnalyticsDashboard.svelte';
+import { AdminDashboard } from '../components/react/admin/AdminDashboard';
 ---
 
 <Layout title="Panel de Análisis">
-  <AnalyticsDashboard client:load />
+  <AdminDashboard client:only="react" />
 </Layout>

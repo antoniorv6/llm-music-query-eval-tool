@@ -1,38 +1,97 @@
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap');
+@import "sileo/styles.css";
 @import "tailwindcss";
 
 @theme {
-  /* ─── Indigo accent palette ─────────────────────────────── */
-  --color-accent-50:  #EEF2FF;
-  --color-accent-100: #E0E7FF;
-  --color-accent-200: #C7D2FE;
-  --color-accent-300: #A5B4FC;
-  --color-accent-400: #818CF8;
-  --color-accent-500: #6366F1;
-  --color-accent-600: #4F46E5;
-  --color-accent-700: #4338CA;
-  --color-accent-800: #3730A3;
-  --color-accent-900: #312E81;
-  --color-accent-950: #1E1B4B;
+  /* ─── Amber/gold accent palette ─────────────────────────── */
+  --color-accent-50:  #FFFBEB;
+  --color-accent-100: #FEF3C7;
+  --color-accent-200: #FDE68A;
+  --color-accent-300: #FCD34D;
+  --color-accent-400: #FBBF24;
+  --color-accent-500: #C8A85A;   /* warm manuscript gold      */
+  --color-accent-600: #B8943F;   /* hover / buttons           */
+  --color-accent-700: #92740A;
+  --color-accent-800: #78590A;
+  --color-accent-900: #5C4209;
+  --color-accent-950: #3D2B05;
 
-  /* ─── Surface palette — light theme (inverted scale) ────── */
-  /* 950 = lightest (page bg) → 50 = darkest (headings)       */
-  --color-surface-950: #F8FAFC;   /* page background          */
-  --color-surface-900: #FFFFFF;   /* cards, panels            */
-  --color-surface-850: #F1F5F9;   /* muted surfaces           */
-  --color-surface-800: #E8EEF4;   /* input backgrounds        */
-  --color-surface-700: #CBD5E1;   /* borders (slate-300)      */
-  --color-surface-600: #94A3B8;   /* strong border / v.muted  */
-  --color-surface-500: #64748B;   /* muted text (slate-500)   */
-  --color-surface-400: #475569;   /* secondary text           */
-  --color-surface-300: #334155;   /* body text                */
-  --color-surface-200: #1E293B;   /* primary text             */
-  --color-surface-100: #0F172A;   /* headings                 */
-  --color-surface-50:  #020617;   /* deepest (rare)           */
+  /* ─── Surface palette — dark theme ──────────────────────── */
+  /* 950 = deepest (page bg) → 50 = lightest (rare white)     */
+  --color-surface-950: #0A0C10;   /* page background           */
+  --color-surface-900: #0F1117;   /* panels, cards, header     */
+  --color-surface-850: #141720;   /* muted surfaces, inputs    */
+  --color-surface-800: #1C2030;   /* hover states, tracks      */
+  --color-surface-700: #252A3A;   /* borders (primary)         */
+  --color-surface-600: #313754;   /* stronger borders          */
+  --color-surface-500: #4A5170;   /* muted text, icons         */
+  --color-surface-400: #6B7280;   /* secondary text            */
+  --color-surface-300: #9CA3AF;   /* body text                 */
+  --color-surface-200: #D1D5DB;   /* primary text              */
+  --color-surface-100: #F3F4F6;   /* headings, high-emphasis   */
+  --color-surface-50:  #F9FAFB;   /* pure white / rare         */
 
-  --font-sans:  'Atkinson Hyperlegible', 'Inter', system-ui, sans-serif;
-  --font-serif: 'Crimson Pro', Georgia, 'Times New Roman', serif;
-  --font-mono:  'JetBrains Mono', ui-monospace, monospace;
+  --font-sans:  'DM Sans', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono:  'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ─── Semantic badge/icon color tokens ──────────────────────── */
+:root {
+  /* Amber — dark theme: bright gold on dark surfaces */
+  --badge-amber-bg:     rgb(120 53 15 / 0.3);
+  --badge-amber-text:   #FBBF24;
+  --badge-amber-border: rgb(120 53 15 / 0.35);
+
+  /* Teal — dark theme: bright cyan on dark surfaces */
+  --badge-teal-bg:     rgb(19 78 74 / 0.4);
+  --badge-teal-text:   #2DD4BF;
+  --badge-teal-border: rgb(19 78 74 / 0.35);
+
+  /* Icon container amber */
+  --icon-amber-bg:     rgb(120 53 15 / 0.2);
+  --icon-amber-border: rgb(245 158 11 / 0.25);
+  --icon-amber-text:   #FBBF24;
+
+  /* CTA teal (Completado button) */
+  --cta-teal-bg:     rgb(20 184 166 / 0.1);
+  --cta-teal-border: rgb(20 184 166 / 0.25);
+  --cta-teal-text:   #2DD4BF;
+}
+
+/* ─── Light theme overrides ─────────────────────────────────── */
+html.light {
+  /* Amber — light theme: dark amber on warm light surfaces */
+  --badge-amber-bg:     #FEF3C7;
+  --badge-amber-text:   #92400E;
+  --badge-amber-border: #FCD34D;
+
+  /* Teal — light theme: dark teal on pale teal surfaces */
+  --badge-teal-bg:     #CCFBF1;
+  --badge-teal-text:   #0F766E;
+  --badge-teal-border: #5EEAD4;
+
+  /* Icon container amber */
+  --icon-amber-bg:     #FEF3C7;
+  --icon-amber-border: #FCD34D;
+  --icon-amber-text:   #92400E;
+
+  /* CTA teal */
+  --cta-teal-bg:     #CCFBF1;
+  --cta-teal-border: #5EEAD4;
+  --cta-teal-text:   #0F766E;
+
+  --color-surface-950: #F8FAFC;
+  --color-surface-900: #FFFFFF;
+  --color-surface-850: #F1F5F9;
+  --color-surface-800: #E8EEF4;
+  --color-surface-700: #CBD5E1;
+  --color-surface-600: #94A3B8;
+  --color-surface-500: #64748B;
+  --color-surface-400: #475569;
+  --color-surface-300: #334155;
+  --color-surface-200: #1E293B;
+  --color-surface-100: #0F172A;
+  --color-surface-50:  #020617;
 }
 
 body {
@@ -40,12 +99,57 @@ body {
   color: var(--color-surface-300);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Smooth micro-interactions */
 *, *::before, *::after {
   transition-duration: 150ms;
 }
+
+/* ─── Semantic badge classes ─────────────────────────────────── */
+.badge-amber {
+  background-color: var(--badge-amber-bg);
+  color: var(--badge-amber-text);
+  border-color: var(--badge-amber-border);
+}
+
+.badge-teal {
+  background-color: var(--badge-teal-bg);
+  color: var(--badge-teal-text);
+  border-color: var(--badge-teal-border);
+}
+
+.icon-badge-amber {
+  background-color: var(--icon-amber-bg);
+  border-color: var(--icon-amber-border);
+  color: var(--icon-amber-text);
+}
+
+.cta-teal {
+  background-color: var(--cta-teal-bg);
+  border-color: var(--cta-teal-border);
+  color: var(--cta-teal-text);
+}
+
+/* Standalone icon / text colors that need to adapt */
+.text-ui-amber { color: var(--icon-amber-text); }
+.text-ui-teal  { color: var(--badge-teal-text); }
+
+/* ─── Ranking score button active states ─────────────────────── */
+.score-active-0 { background-color: rgb(69 10 10 / 0.6); color: #f87171; border-color: rgb(153 27 27 / 0.6); }
+.score-active-1 { background-color: rgb(69 10 10 / 0.4); color: #f87171; border-color: rgb(153 27 27 / 0.4); }
+.score-active-2 { background-color: rgb(67 20 7 / 0.5);  color: #fb923c; border-color: rgb(154 52 18 / 0.5); }
+.score-active-3 { background-color: rgb(69 26 3 / 0.5);  color: #fbbf24; border-color: rgb(180 83 9 / 0.5); }
+.score-active-4 { background-color: rgb(4 47 46 / 0.5);  color: #2dd4bf; border-color: rgb(19 78 74 / 0.5); }
+.score-active-5 { background-color: rgb(19 78 74 / 0.4); color: #5eead4; border-color: rgb(19 78 74 / 0.4); }
+
+html.light .score-active-0 { background-color: #FEE2E2; color: #991B1B; border-color: #FCA5A5; }
+html.light .score-active-1 { background-color: #FFF1F2; color: #B91C1C; border-color: #FECACA; }
+html.light .score-active-2 { background-color: #FFF7ED; color: #9A3412; border-color: #FDBA74; }
+html.light .score-active-3 { background-color: #FFFBEB; color: #92400E; border-color: #FCD34D; }
+html.light .score-active-4 { background-color: #F0FDFA; color: #0F766E; border-color: #5EEAD4; }
+html.light .score-active-5 { background-color: #CCFBF1; color: #0D9488; border-color: #2DD4BF; }
 
 /* ─── Staff divider — 5-line music staff ──────────────────── */
 .staff-divider {
@@ -63,18 +167,44 @@ body {
   right: 0;
   top: 1px;
   height: 1px;
-  background: linear-gradient(to right, transparent 0%, rgba(71, 85, 105, 0.20) 20%, rgba(71, 85, 105, 0.20) 80%, transparent 100%);
+  background: linear-gradient(to right, transparent 0%, rgba(200, 168, 90, 0.12) 20%, rgba(200, 168, 90, 0.12) 80%, transparent 100%);
   box-shadow:
-    0 3px 0 rgba(71, 85, 105, 0.16),
-    0 6px 0 rgba(71, 85, 105, 0.12),
-    0 9px 0 rgba(71, 85, 105, 0.09),
-    0 12px 0 rgba(71, 85, 105, 0.06);
+    0 3px 0 rgba(200, 168, 90, 0.09),
+    0 6px 0 rgba(200, 168, 90, 0.07),
+    0 9px 0 rgba(200, 168, 90, 0.05),
+    0 12px 0 rgba(200, 168, 90, 0.03);
 }
 
-/* ─── Card elevation — light theme ────────────────────────── */
+/* ─── Card elevation ───────────────────────────────────────── */
 .card-elevated {
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+
+html.light .card-elevated {
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+/* ─── Apple frosted glass card ─────────────────────────────── */
+.card-glass {
+  background-color: color-mix(in oklch, var(--color-surface-900) 92%, transparent);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid color-mix(in oklch, var(--color-surface-600) 30%, transparent);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.24),
+    0 8px 32px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+html.light .card-glass {
+  background-color: color-mix(in oklch, white 88%, transparent);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 2px 8px rgba(15, 23, 42, 0.06),
+    0 8px 32px rgba(15, 23, 42, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
 
 /* ─── Markdown content styling ─────────────────────────────── */
 .markdown-content h1,
@@ -227,39 +357,6 @@ body {
 @utility animate-border-beam-reverse {
   animation: border-beam-rotate var(--duration, 8s) linear infinite reverse;
   animation-delay: var(--delay, 0s);
-}
-
-/* ─── MagicUI: meteors ──────────────────────────────────── */
-@keyframes meteor {
-  0% {
-    transform: rotate(215deg) translateX(0);
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    transform: rotate(215deg) translateX(-600px);
-    opacity: 0;
-  }
-}
-
-@utility animate-meteor {
-  animation: meteor linear infinite;
-}
-
-/* ─── MagicUI: animated-shiny-text ─────────────────────── */
-@keyframes shiny-text {
-  0%, 90%, 100% {
-    background-position: calc(-100% - var(--shimmer-width, 100px)) 0;
-  }
-  30%, 60% {
-    background-position: calc(100% + var(--shimmer-width, 100px)) 0;
-  }
-}
-
-@utility animate-shiny-text {
-  animation: shiny-text 4s ease-in-out infinite;
 }
 
 /* ─── MagicUI: shine-border ─────────────────────────────── */

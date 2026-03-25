@@ -69,8 +69,8 @@ export function QuestionTabs({
               className={cn(
                 "shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-md text-sm font-medium cursor-pointer border transition-colors",
                 isActive
-                  ? "bg-accent-600 text-white border-accent-700"
-                  : "bg-surface-900 text-surface-400 border-surface-700 hover:border-accent-500 hover:text-surface-200"
+                  ? "bg-amber-600 text-white border-amber-700"
+                  : "bg-surface-900 text-surface-400 border-surface-700 hover:border-amber-500/50 hover:text-surface-200"
               )}
             >
               <span className="font-mono text-xs">P{qId}</span>
@@ -96,7 +96,7 @@ export function QuestionTabs({
                 <svg
                   className={cn(
                     "w-3 h-3",
-                    isActive ? "text-white/70" : "text-green-500"
+                    isActive ? "text-white/70" : "text-ui-teal"
                   )}
                   fill="none"
                   viewBox="0 0 24 24"
@@ -138,8 +138,8 @@ export function QuestionTabs({
                 className={cn(
                   "shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium cursor-pointer border transition-colors",
                   isSubActive
-                    ? "bg-accent-500/80 text-white border-accent-600"
-                    : "bg-surface-850 text-surface-400 border-surface-700/60 hover:border-accent-500/60 hover:text-surface-200"
+                    ? "bg-amber-600/80 text-white border-amber-700"
+                    : "bg-surface-850 text-surface-400 border-surface-700/60 hover:border-amber-500/50 hover:text-surface-200"
                 )}
               >
                 <span className="font-mono">{sub.id}</span>
@@ -147,7 +147,7 @@ export function QuestionTabs({
                   <svg
                     className={cn(
                       "w-2.5 h-2.5",
-                      isSubActive ? "text-white/70" : "text-green-500"
+                      isSubActive ? "text-white/70" : "text-teal-400"
                     )}
                     fill="none"
                     viewBox="0 0 24 24"

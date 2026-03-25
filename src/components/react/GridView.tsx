@@ -33,10 +33,11 @@ export function GridView({
       initial="hidden"
       animate="visible"
     >
-      {responses.map((response) => (
+      {responses.map((response, i) => (
         <ModelResponseCard
           key={response.modelo}
           response={response}
+          index={i}
           questionType={questionType}
           evaluation={evaluations.get(response.modelo) || null}
           onScore={(score) => onScore(response.modelo, score)}
