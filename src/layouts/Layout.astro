@@ -20,7 +20,7 @@ const { title } = Astro.props;
     />
     <script is:inline>
       (function() {
-        var t = localStorage.getItem('theme');
+        var t = 'light';
         if (t === 'light') document.documentElement.classList.add('light');
       })();
     </script>
