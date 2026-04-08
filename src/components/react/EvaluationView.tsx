@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   validateEvaluatorKey,
@@ -18,6 +18,7 @@ import { GridView } from "./GridView";
 import { CarouselView } from "./CarouselView";
 import { ProgressBar } from "./ProgressBar";
 import { ThemeToggle } from "./ThemeToggle";
+import { SolutionPanel } from "./SolutionPanel";
 import { sileo, Toaster } from "sileo";
 import type {
   ResponsesData,
@@ -26,6 +27,7 @@ import type {
   SimpleQuestion,
   QuestionType,
 } from "../../lib/types";
+import type { SolutionsData } from "../../lib/solutions";
 import { cn } from "../../lib/cn";
 
 interface EvaluationViewProps {
@@ -40,6 +42,12 @@ export function EvaluationView({ imageFilename }: EvaluationViewProps) {
   const [activeGroupId, setActiveGroupId] = useState("");
   const [activeQuestionId, setActiveQuestionId] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "carousel">("grid");
+  const [solutions, setSolutions] = useState<SolutionsData | null>(null);
+  const [panelWidth, setPanelWidth] = useState(400);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragStartWidth = useRef(0);
 
   const { setCurrentEvaluator, setEvaluations } = useAppStore();
 
@@ -81,6 +89,11 @@ export function EvaluationView({ imageFilename }: EvaluationViewProps) {
     () =>
       userEvaluations.filter((e) => e.image_filename === imageFilename).length,
     [userEvaluations, imageFilename]
+  );
+
+  const imageKey = useMemo(
+    () => imageFilename.replace(/\.[^.]+$/, ""),
+    [imageFilename]
   );
 
   const questionEvaluations = useMemo(() => {
@@ -140,10 +153,11 @@ export function EvaluationView({ imageFilename }: EvaluationViewProps) {
       setEvalData(evaluator);
       setCurrentEvaluator(evaluator);
 
-      const [responsesRes, evals, assigned] = await Promise.all([
+      const [responsesRes, evals, assigned, solutionsData] = await Promise.all([
         fetch("/api/responses").then((r) => r.json()),
         getEvaluations(evaluator.id),
         getAssignedImages(evaluator.id),
+        fetch("/solutions.json").then((r) => r.json()).catch(() => null),
       ]);
 
       // If this image is not assigned to the evaluator, redirect to dashboard
@@ -156,6 +170,7 @@ export function EvaluationView({ imageFilename }: EvaluationViewProps) {
       setResponses(data);
       setUserEvaluations(evals);
       setEvaluations(evals);
+      setSolutions(solutionsData as SolutionsData);
 
       const qIds = Object.keys(data[imageFilename] || {}).sort(
         (a, b) => Number(a) - Number(b)
@@ -174,6 +189,51 @@ export function EvaluationView({ imageFilename }: EvaluationViewProps) {
     }
     init();
   }, [imageFilename, setCurrentEvaluator, setEvaluations]);
+
+  // Track desktop breakpoint for resizable panel
+  useEffect(() => {
+    const check = () => setIsDesktop(window.innerWidth >= 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // Global mouse events for panel resize drag
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDragging.current) return;
+      const delta = e.clientX - dragStartX.current;
+      const newWidth = Math.min(
+        Math.max(dragStartWidth.current + delta, 260),
+        window.innerWidth * 0.65
+      );
+      setPanelWidth(newWidth);
+    };
+    const handleMouseUp = () => {
+      if (!isDragging.current) return;
+      isDragging.current = false;
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
+
+  const handleDividerMouseDown = useCallback(
+    (e: React.MouseEvent) => {
+      isDragging.current = true;
+      dragStartX.current = e.clientX;
+      dragStartWidth.current = panelWidth;
+      document.body.style.cursor = "col-resize";
+      document.body.style.userSelect = "none";
+      e.preventDefault();
+    },
+    [panelWidth]
+  );
 
   const handleTabSelect = useCallback(
     (groupId: string, questionId: string) => {
@@ -389,7 +449,10 @@ export function EvaluationView({ imageFilename }: EvaluationViewProps) {
       {/* Two-column body */}
       <div className="flex flex-col lg:flex-row flex-1 lg:overflow-hidden">
         {/* Left panel */}
-        <aside className="shrink-0 lg:w-[380px] xl:w-[420px] flex flex-col border-b border-surface-700 lg:border-b-0 lg:border-r lg:overflow-hidden bg-surface-900">
+        <aside
+          className="shrink-0 flex flex-col border-b border-surface-700 lg:border-b-0 lg:overflow-hidden bg-surface-900"
+          style={isDesktop ? { width: panelWidth } : undefined}
+        >
           {/* Image */}
           <div className="shrink-0">
             <ImageViewer
@@ -438,6 +501,14 @@ export function EvaluationView({ imageFilename }: EvaluationViewProps) {
                   <p className="font-serif text-[15px] text-surface-200 leading-relaxed">
                     {activeQuestionData.question}
                   </p>
+                  <div className="mt-3 pt-3 border-t border-surface-700/50">
+                    <SolutionPanel
+                      imageKey={imageKey}
+                      activeGroupId={activeGroupId}
+                      activeQuestionId={activeQuestionId}
+                      solutions={solutions}
+                    />
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -462,6 +533,16 @@ export function EvaluationView({ imageFilename }: EvaluationViewProps) {
             </div>
           </div>
         </aside>
+
+        {/* Drag handle — desktop only */}
+        <div
+          role="separator"
+          aria-orientation="vertical"
+          className="hidden lg:flex shrink-0 w-[5px] cursor-col-resize items-center justify-center group bg-surface-800 border-x border-surface-700 hover:border-amber-600/40 transition-colors duration-150"
+          onMouseDown={handleDividerMouseDown}
+        >
+          <div className="w-[3px] h-6 rounded-full bg-surface-600 group-hover:bg-amber-500/60 transition-colors duration-200" />
+        </div>
 
         {/* Right panel */}
         <main className="flex-1 flex flex-col lg:overflow-hidden bg-surface-950">

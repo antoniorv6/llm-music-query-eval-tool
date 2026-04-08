@@ -1,0 +1,561 @@
+{
+  "1_1": {
+    "0": { "type": "binary", "answer": "Yes" },
+    "1": { "type": "binary", "answer": "Modern notation / Common western notation" },
+    "2": { "type": "binary", "answer": "Symphony No. 9 in D minor, Op. 125 \"Ode to Joy\", by Ludwig van Beethoven" },
+    "4": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Key signature: one sharp (F#). Predominance of G, B, D notes (tonic chord of G Major). No accidentals. → Conclusion: G Major.",
+        "4": "Key signature: one sharp (F#). Reasoning not completely correct or missing most common notes. → Conclusion: G Major.",
+        "3": "Key signature: one sharp (F#). → Conclusion: G Major or E minor.",
+        "2": "Key signature mistaken by one symbol (e.g., two sharps: F#, C#).",
+        "1": "Key signature is mistaken.",
+        "0": "Model admits they do not know and provides no clear answer."
+      }
+    },
+    "5": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Notation simple and clean. Staff marked with \"S\" (Soprano abbreviation). Sopranino clef (transposing G-clef, sounds up an octave). Extremely simple rhythm. → Conclusion: Recorder / flute / high-pitched woodwinds, beginner level.",
+        "4": "Staff marked with \"S\" for Soprano. Mentions treble clef instead of transposing G-clef. → Conclusion: Flute / high-pitched woodwinds.",
+        "3": "Identifies flute or high-pitched woodwinds but without the previous arguments or hallucinating.",
+        "2": "Identifies it as a choral score for soprano.",
+        "1": "Does not mention the melody being high-pitched at all. Incorrect instrument.",
+        "0": "No answer or completely wrong."
+      }
+    },
+    "6": { "type": "binary", "answer": "4/4" },
+    "7": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Expected answers: Quarter note → Yes, Whole note → No, Crescendo → No, C major chord → No, Quarter rest → No. (5/5 correct)",
+        "4": "4 out of 5 symbols correctly identified.",
+        "3": "3 out of 5 symbols correctly identified.",
+        "2": "2 out of 5 symbols correctly identified.",
+        "1": "1 out of 5 symbols correctly identified.",
+        "0": "None correctly identified."
+      }
+    },
+    "8": {
+      "type": "thread",
+      "subQuestions": {
+        "8a": { "type": "binary", "answer": "Yes — \"Allegretto\" is indicated at the top of the first measure, above the staff. No numerical BPM." },
+        "8b": { "type": "binary", "answer": "Yes — a slur connecting B and A notes at the end. No other articulation marks." },
+        "8c": { "type": "binary", "answer": "Transposing G-Clef (sounds up an octave) / Sopranino clef / Treble clef with a little 8 above (the 8 must be mentioned)." }
+      }
+    },
+    "9": { "type": "binary", "answer": "Easy (1–2). Simple melody with easy rhythms." },
+    "10": {
+      "type": "thread",
+      "subQuestions": {
+        "10a": { "type": "binary", "answer": "Yes — the melody \"B B C D D\" is present." },
+        "10b": { "type": "binary", "answer": "No — the melody \"C D E F# E\" is NOT present." }
+      }
+    }
+  },
+
+  "1_2": {
+    "0": { "type": "binary", "answer": "Yes" },
+    "1": { "type": "binary", "answer": "Modern notation / Common western notation" },
+    "2": { "type": "binary", "answer": "Wolfgang Amadeus Mozart – Eine kleine Nachtmusik (Serenade No. 13 for strings in G major, K. 525)" },
+    "4": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Key signature: one sharp (F#). Melody begins on G Major chord (G, B, D). Predominance of G, B, D in first two measures. No accidentals. → Conclusion: G Major.",
+        "4": "Key signature: one sharp (F#). Reasoning not complete or doesn't mention the opening chord. → Conclusion: G Major.",
+        "3": "Key signature: one sharp (F#). → Conclusion: E minor.",
+        "2": "Key signature mistaken by one symbol (e.g., two sharps: F#, C#).",
+        "1": "Key signature is mistaken.",
+        "0": "Model admits they do not know and provides no clear answer."
+      }
+    },
+    "5": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Single staff (not a system). Begins with a chord → cannot be a wind instrument (which plays only one note at a time). Probably a string instrument. Treble clef → Violin. → Conclusion: Violin.",
+        "4": "Begins with a chord → cannot be a wind instrument. → Conclusion: String instrument / viola.",
+        "3": "Reasoning correct (could be 4 or 5) but with hallucinations (e.g., invents grace notes or ornaments). → Conclusion: Violin / viola.",
+        "2": "→ Conclusion: High-pitched woodwinds (clarinet, flute…).",
+        "1": "Does not mention the clef, the first chord or the tessitura. Incorrect instrument.",
+        "0": "No answer or completely wrong."
+      }
+    },
+    "6": { "type": "binary", "answer": "4/4, notated as a C at the beginning of the staff" },
+    "7": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Expected answers: Quarter note → Yes, Whole note → No, Crescendo → No, C major chord → No (but there is a G Major chord), Quarter rest → Yes. (5/5 correct)",
+        "4": "4 out of 5 symbols correctly identified.",
+        "3": "3 out of 5 symbols correctly identified.",
+        "2": "2 out of 5 symbols correctly identified.",
+        "1": "1 out of 5 symbols correctly identified.",
+        "0": "None correctly identified."
+      }
+    },
+    "8": {
+      "type": "thread",
+      "subQuestions": {
+        "8a": { "type": "binary", "answer": "Yes — \"Allegro\" is indicated at the top of the first measure, above the staff. No numerical BPM." },
+        "8b": { "type": "binary", "answer": "No — there are no articulation marks." },
+        "8c": { "type": "binary", "answer": "Treble clef / G-Clef." }
+      }
+    },
+    "9": { "type": "binary", "answer": "Easy (1–3). Simple rhythmic pattern. Interval steps (may be more challenging). Depends on instrument." },
+    "10": {
+      "type": "thread",
+      "subQuestions": {
+        "10a": { "type": "binary", "answer": "Yes — the melody \"G D G B D\" is present." },
+        "10b": { "type": "binary", "answer": "No — the melody \"D G D G G\" is NOT present." }
+      }
+    }
+  },
+
+  "1_3": {
+    "0": { "type": "binary", "answer": "Yes" },
+    "1": { "type": "binary", "answer": "Modern notation / Common western notation" },
+    "2": { "type": "binary", "answer": "Johann Sebastian Bach – Toccata and Fugue in D minor, BWV 565" },
+    "4": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Key signature: one flat (B♭). May be F Major or D minor, but C is sharp (C#). The harmonic minor scale has its 7th degree raised. → Conclusion: Harmonic D minor.",
+        "4": "Key signature: one flat (B♭). Reasoning not completely correct or doesn't mention the harmonic type. → Conclusion: D minor.",
+        "3": "Key signature: one flat (B♭). → Conclusion: F Major or D minor.",
+        "2": "Key signature mistaken by one symbol (e.g., two flats: B♭, E♭).",
+        "1": "Key signature is mistaken.",
+        "0": "Model admits they do not know and provides no clear answer."
+      }
+    },
+    "5": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Notation simple and clean. Treble clef. Very high notes. → Conclusion: Flute.",
+        "4": "Very high notes mentioned. → Conclusion: Flute / high-pitched woodwinds / violin.",
+        "3": "Correct reasoning but with hallucinations (e.g., invents grace notes/ornaments to justify a specific instrument). → Conclusion: Flute / high-pitched woodwinds / violin.",
+        "2": "High-pitched woodwinds, without justification.",
+        "1": "Does not mention the high pitch at all. Incorrect instrument.",
+        "0": "No answer or completely wrong."
+      }
+    },
+    "6": { "type": "binary", "answer": "4/4" },
+    "7": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Expected answers: Quarter note → Yes, Whole note → No, Crescendo → No, C major chord → No, Quarter rest → Yes. (5/5 correct)",
+        "4": "4 out of 5 symbols correctly identified.",
+        "3": "3 out of 5 symbols correctly identified.",
+        "2": "2 out of 5 symbols correctly identified.",
+        "1": "1 out of 5 symbols correctly identified.",
+        "0": "None correctly identified."
+      }
+    },
+    "8": {
+      "type": "thread",
+      "subQuestions": {
+        "8a": { "type": "binary", "answer": "Yes — \"Adagio\" is indicated above the staff, plus the metronome marking ♩= 78." },
+        "8b": { "type": "binary", "answer": "Yes — most notes united by legato slurs; some ties (the A in measures 1 and 3); both C# notes marked as tenuto." },
+        "8c": { "type": "binary", "answer": "Treble clef / G-Clef." }
+      }
+    },
+    "9": { "type": "binary", "answer": "Medium (2–3). Very high notes. Entirely stepwise motion. Depends on instrument." },
+    "10": {
+      "type": "thread",
+      "subQuestions": {
+        "10a": { "type": "binary", "answer": "Yes — the melody \"G F E D #C\" is present." },
+        "10b": { "type": "binary", "answer": "No — the melody \"G A B #C\" is NOT present." }
+      }
+    }
+  },
+
+  "1_4": {
+    "0": { "type": "binary", "answer": "Yes" },
+    "1": { "type": "binary", "answer": "Modern notation / Common western notation" },
+    "2": { "type": "binary", "answer": "Antonio Vivaldi – The Four Seasons, Spring" },
+    "4": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Key signature: two sharps (F#, C#). May be D Major or B minor. No accidentals. → Conclusion: D Major.",
+        "4": "Key signature: two sharps (F#, C#). Reasoning not completely correct. → Conclusion: D Major.",
+        "3": "Key signature: two sharps (F#, C#). → Conclusion: B minor.",
+        "2": "Key signature mistaken by one symbol (one sharp F#, or three sharps F#, C#, G#).",
+        "1": "Key signature is mistaken.",
+        "0": "Model admits they do not know and provides no clear answer."
+      }
+    },
+    "5": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Notation simple and clean. Treble clef. Simple rhythm. → Conclusion: Flute.",
+        "4": "High notes generally. Treble clef. → Conclusion: High-pitched woodwinds.",
+        "3": "Flute / high-pitched woodwinds but omits the key points or hallucinations.",
+        "2": "Woodwinds, without justification.",
+        "1": "Does not mention the high pitch at all. Incorrect instrument.",
+        "0": "No answer or completely wrong."
+      }
+    },
+    "6": { "type": "binary", "answer": "4/4, marked as a C at the beginning of the staff" },
+    "7": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Expected answers: Quarter note → No (unless says \"yes, but they are dotted\"), Whole note → No, Crescendo → No, C major chord → No, Quarter rest → No. (5/5 correct)",
+        "4": "4 out of 5 symbols correctly identified.",
+        "3": "3 out of 5 symbols correctly identified.",
+        "2": "2 out of 5 symbols correctly identified.",
+        "1": "1 out of 5 symbols correctly identified.",
+        "0": "None correctly identified."
+      }
+    },
+    "8": {
+      "type": "thread",
+      "subQuestions": {
+        "8a": { "type": "binary", "answer": "Yes — \"Allegro\" is indicated at the top of the first measure, above the staff." },
+        "8b": { "type": "binary", "answer": "No — there are no articulation marks." },
+        "8c": { "type": "binary", "answer": "Treble clef / G-Clef." }
+      }
+    },
+    "9": { "type": "binary", "answer": "Medium-easy (1–3). Notes within typical treble clef range. Mainly stepwise motion or small leaps. Quick rhythm." },
+    "10": {
+      "type": "thread",
+      "subQuestions": {
+        "10a": { "type": "binary", "answer": "Yes — the melody \"A A B F# F#\" is present." },
+        "10b": { "type": "binary", "answer": "No — the melody \"F# D E C#\" is NOT present." }
+      }
+    }
+  },
+
+  "1_5": {
+    "0": { "type": "binary", "answer": "Yes" },
+    "1": { "type": "binary", "answer": "Modern notation / Common western notation" },
+    "2": { "type": "binary", "answer": "Pyotr Ilyich Tchaikovsky – Swan Lake (ballet)" },
+    "4": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Key signature: two sharps (F#, C#). May be D Major or B minor. No accidentals. Predominance of F# (dominant note of B minor). → Conclusion: B minor.",
+        "4": "Key signature: two sharps (F#, C#). Reasoning not completely correct. → Conclusion: B minor.",
+        "3": "Key signature: two sharps (F#, C#). → Conclusion: D Major.",
+        "2": "Key signature mistaken by one symbol (one sharp F#, or three sharps F#, C#, G#).",
+        "1": "Key signature is mistaken.",
+        "0": "Model admits they do not know and provides no clear answer."
+      }
+    },
+    "5": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Notation simple and clean. Treble clef. Simple rhythm. → Conclusion: Flute.",
+        "4": "High notes generally. Treble clef. → Conclusion: High-pitched woodwinds.",
+        "3": "Flute / high-pitched woodwinds but omits the key points or hallucinations.",
+        "2": "Woodwinds, without justification.",
+        "1": "Does not mention the high pitch at all. Incorrect instrument.",
+        "0": "No answer or completely wrong."
+      }
+    },
+    "6": { "type": "binary", "answer": "4/4, marked as a C at the beginning of the staff" },
+    "7": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Expected answers: Quarter note → No (unless says \"yes, but they are dotted\"), Whole note → No, Crescendo → No, C major chord → No, Quarter rest → No. (5/5 correct)",
+        "4": "4 out of 5 symbols correctly identified.",
+        "3": "3 out of 5 symbols correctly identified.",
+        "2": "2 out of 5 symbols correctly identified.",
+        "1": "1 out of 5 symbols correctly identified.",
+        "0": "None correctly identified."
+      }
+    },
+    "8": {
+      "type": "thread",
+      "subQuestions": {
+        "8a": { "type": "binary", "answer": "Yes — \"Moderato\" is indicated, as well as the indication \"espress.\" (to play espressivo, emotionally)." },
+        "8b": { "type": "binary", "answer": "Yes — many legato slurs throughout; the last B is tied." },
+        "8c": { "type": "binary", "answer": "Treble clef / G-Clef." }
+      }
+    },
+    "9": { "type": "binary", "answer": "Medium-easy (1–3). Notes within typical treble range. Stepwise motion or small leaps. Slow tempo." },
+    "10": {
+      "type": "thread",
+      "subQuestions": {
+        "10a": { "type": "binary", "answer": "Yes — the melody \"F# D F# D F#\" is present." },
+        "10b": { "type": "binary", "answer": "No — the melody \"C# G A B\" is NOT present." }
+      }
+    }
+  },
+
+  "2_1": {
+    "0": { "type": "binary", "answer": "Yes" },
+    "1": { "type": "binary", "answer": "Modern notation / Common western notation" },
+    "2": { "type": "binary", "answer": "La Vallée Silencieuse (Guillaume Balay)" },
+    "4": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Key signature: two sharps (F#, C#). May be D Major or B minor. No accidentals up to the end. Accidentals in last measure point toward a tonality change (possibly toward A♭ Major or F minor, but more info needed). → Conclusion: D Major, with end pointing toward a change.",
+        "4": "Key signature: two sharps (F#, C#). Not completely correct or doesn't mention the end accidentals. → Conclusion: D Major.",
+        "3": "Key signature: two sharps (F#, C#). → Conclusion: B minor.",
+        "2": "Key signature mistaken by one symbol (one sharp F#, or three sharps F#, C#, G#).",
+        "1": "Key signature is mistaken.",
+        "0": "Model admits they do not know and provides no clear answer."
+      }
+    },
+    "5": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Notation simple and clean. Treble clef. Simple rhythm. → Conclusion: Flute / high-pitched woodwinds. Note: if the image has \"flûte\" printed in the upper left corner, the model must mention it; if not mentioned and answer is other than flute, score is 1.",
+        "4": "Treble clef mentioned. → Conclusion: High-pitched woodwinds / woodwinds.",
+        "3": "Flute / high-pitched woodwinds / woodwinds but without the key arguments or hallucinations.",
+        "2": "Woodwinds, without justification.",
+        "1": "Any other answer.",
+        "0": "No answer."
+      }
+    },
+    "6": { "type": "binary", "answer": "3/4, marked as a C at the beginning of the staff" },
+    "7": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Expected answers: Quarter note → No (unless says \"yes, but they are dotted\"), Whole note → No, Crescendo → No, C major chord → No, Quarter rest → No (but there are two whole rest measures at the beginning). (5/5 correct)",
+        "4": "4 out of 5 symbols correctly identified.",
+        "3": "3 out of 5 symbols correctly identified.",
+        "2": "2 out of 5 symbols correctly identified.",
+        "1": "1 out of 5 symbols correctly identified.",
+        "0": "None correctly identified."
+      }
+    },
+    "8": {
+      "type": "thread",
+      "subQuestions": {
+        "8a": { "type": "binary", "answer": "Yes — \"Assez lent\" is indicated above the staff, plus the metronome marking ♩= 60." },
+        "8b": { "type": "binary", "answer": "Yes — many legato slurs and some ties." },
+        "8c": { "type": "binary", "answer": "Treble clef / G-Clef." }
+      }
+    },
+    "9": { "type": "binary", "answer": "Medium-easy (1–3). Notes within typical treble range. Small intervallic leaps. Slow tempo. Rhythms somewhat elaborate but not overly complex." },
+    "10": {
+      "type": "thread",
+      "subQuestions": {
+        "10a": { "type": "binary", "answer": "Yes — the melody \"D C# B A G\" is present." },
+        "10b": { "type": "binary", "answer": "No — the melody \"F# E D C# B\" is NOT present." }
+      }
+    }
+  },
+
+  "2_2": {
+    "0": { "type": "binary", "answer": "Yes" },
+    "1": { "type": "binary", "answer": "Modern notation / Common western notation" },
+    "2": { "type": "binary", "answer": "New Year's Greeting for Three (Elaine Fine)" },
+    "4": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Key signature: one flat (B♭). May be F Major or D minor. Starts with notes A, D, F (D minor tonic chord). Many supporting notes from D minor chord (D, F, A). → Conclusion: D minor.",
+        "4": "Key signature: one flat (B♭). Not completely correct. → Conclusion: D minor.",
+        "3": "Key signature: one flat (B♭). → Conclusion: F Major.",
+        "2": "Key signature mistaken by one symbol (e.g., two flats: B♭, E♭).",
+        "1": "Key signature is mistaken.",
+        "0": "Model admits they do not know and provides no clear answer."
+      }
+    },
+    "5": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Notation simple and clean. Treble clef. Simple rhythm. → Conclusion: Violin, oboe (both are the intended instruments), or high-pitched woodwinds.",
+        "4": "Treble clef mentioned. → Conclusion: Violin / high-pitched woodwinds / woodwinds.",
+        "3": "Violin / high-pitched woodwinds / woodwinds but without the key arguments or hallucinations.",
+        "2": "Woodwinds, without justification.",
+        "1": "Any other answer.",
+        "0": "No answer."
+      }
+    },
+    "6": { "type": "binary", "answer": "4/4" },
+    "7": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Expected answers: Quarter note → Yes, Whole note → No, Crescendo → No, C major chord → No, Quarter rest → No. (5/5 correct)",
+        "4": "4 out of 5 symbols correctly identified.",
+        "3": "3 out of 5 symbols correctly identified.",
+        "2": "2 out of 5 symbols correctly identified.",
+        "1": "1 out of 5 symbols correctly identified.",
+        "0": "None correctly identified."
+      }
+    },
+    "8": {
+      "type": "thread",
+      "subQuestions": {
+        "8a": { "type": "binary", "answer": "Yes — \"Allegro moderato\" is indicated at the top of the first measure." },
+        "8b": { "type": "binary", "answer": "Yes — many legato slurs throughout." },
+        "8c": { "type": "binary", "answer": "Treble clef / G-Clef." }
+      }
+    },
+    "9": { "type": "binary", "answer": "Medium-easy (1–3). Notes within typical treble range. Mostly small intervallic leaps. Simple rhythm." },
+    "10": {
+      "type": "thread",
+      "subQuestions": {
+        "10a": { "type": "binary", "answer": "Yes — the melody \"A D F E D\" is present." },
+        "10b": { "type": "binary", "answer": "No — the melody \"A C E D C\" is NOT present." }
+      }
+    }
+  },
+
+  "2_3": {
+    "0": { "type": "binary", "answer": "Yes" },
+    "1": { "type": "binary", "answer": "Modern notation / Common western notation" },
+    "2": { "type": "binary", "answer": "Jack and Jill (Andy Sannella)" },
+    "4": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Key signature: three sharps (F#, C#, G#). First notes form the A Major tonic chord (A, C, E). First measure features both G♮ and F♮ (melodic major scale has 6th and 7th degrees lowered). If image shows \"E♭ Alto Saxophone / With Piano Accompaniment / (Piano)\", model should note the transposition. → Conclusion: Melodic A major.",
+        "4": "Key signature: three sharps (F#, C#, G#). First notes are A Major tonic chord. May note transposition. → Conclusion: A major.",
+        "3": "Key signature: three sharps (F#, C#, G#). → Conclusion: A Major or F# minor, with certainty.",
+        "2": "Key signature mistaken by one symbol (two or four sharps).",
+        "1": "Key signature is mistaken.",
+        "0": "Model admits they do not know and provides no clear answer."
+      }
+    },
+    "5": {
+      "type": "ranking",
+      "rubric": {
+        "5": "If image shows \"E♭ Alto Saxophone / With Piano Accompaniment / (Piano)\": correctly identifies alto saxophone soloist with piano accompaniment. — If NOT: Notation simple. Treble clef. Score features a cue fragment from another instrument. → Conclusion: Soloist score / individual part / with accompaniment.",
+        "4": "Provides the previous arguments. Does not mention an incorrect instrument and is very explicit about having doubts due to limited clues.",
+        "3": "Provides the previous arguments. Mentions a plausible instrument (woodwinds, violin) but is very explicit about having doubts.",
+        "2": "Does or does not mention the previous arguments, but provides a very clear and certain answer.",
+        "1": "Provides a very clear and certain answer without argumentation.",
+        "0": "No answer."
+      }
+    },
+    "6": { "type": "binary", "answer": "2/2, notated as a split C (cut time) at the beginning of the staff" },
+    "7": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Expected answers: Quarter note → Yes, Whole note → No (but there are whole rests), Crescendo → Yes, C major chord → No, Quarter rest → Yes. (5/5 correct)",
+        "4": "4 out of 5 symbols correctly identified.",
+        "3": "3 out of 5 symbols correctly identified.",
+        "2": "2 out of 5 symbols correctly identified.",
+        "1": "1 out of 5 symbols correctly identified.",
+        "0": "None correctly identified."
+      }
+    },
+    "8": {
+      "type": "thread",
+      "subQuestions": {
+        "8a": { "type": "binary", "answer": "Yes — \"Allegretto\" is indicated at the top of the first measure." },
+        "8b": { "type": "binary", "answer": "Yes — many legato slurs, staccato dots, and accent marks." },
+        "8c": { "type": "binary", "answer": "Treble clef / G-Clef." }
+      }
+    },
+    "9": { "type": "binary", "answer": "Medium (2–3). Notes mostly within treble range (with one higher note near the end). Intervallic leaps. Irregular rhythm with triplets." },
+    "10": {
+      "type": "thread",
+      "subQuestions": {
+        "10a": { "type": "binary", "answer": "Yes — the melody \"A C# E A G\" is present." },
+        "10b": { "type": "binary", "answer": "No — the melody \"A C# A C# E\" is NOT present." }
+      }
+    }
+  },
+
+  "2_4": {
+    "0": { "type": "binary", "answer": "Yes" },
+    "1": { "type": "binary", "answer": "Modern notation / Common western notation" },
+    "2": { "type": "binary", "answer": "Cántico de soledad (José Miguel Moreno Sabio)" },
+    "4": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Key signature: no sharps nor flats. Suggests C Major or A minor. Melodic major scale (6th and 7th degrees lowered) may be coherent with the A♭ present (6th degree of C Major). Not enough information to draw a firm conclusion. → Conclusion: C Major, Unsure.",
+        "4": "Key signature: no sharps nor flats. Reasoning not completely correct. → Conclusion: C Major, Unsure.",
+        "3": "Key signature: no sharps nor flats. → Conclusion: C Major or A minor, with (incorrect) certainty.",
+        "2": "Key signature mistaken by one symbol (one sharp F#, or one flat B♭).",
+        "1": "Key signature is mistaken.",
+        "0": "Model admits they do not know and provides no clear answer."
+      }
+    },
+    "5": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Notation simple and clean. Tenor clef (C-clef on the 4th line). Tenor clef is used for bassoon, cello, tenor trombone, and euphonium. → Conclusion: Cello, with explicit doubts due to limited clues.",
+        "4": "Provides the previous arguments. → Conclusion: Bassoon / tenor trombone / euphonium, with explicit doubts.",
+        "3": "Provides the previous arguments. → Mentions any monophonic instrument with explicit doubts.",
+        "2": "Does or does not mention the previous arguments, but provides a very clear and certain answer.",
+        "1": "Provides a very clear and certain answer without argumentation.",
+        "0": "No answer."
+      }
+    },
+    "6": { "type": "binary", "answer": "4/4, notated as a C at the beginning of the staff" },
+    "7": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Expected answers: Quarter note → Yes, Whole note → No, Crescendo → No (but there is a decrescendo), C major chord → No, Quarter rest → Yes. (5/5 correct)",
+        "4": "4 out of 5 symbols correctly identified.",
+        "3": "3 out of 5 symbols correctly identified.",
+        "2": "2 out of 5 symbols correctly identified.",
+        "1": "1 out of 5 symbols correctly identified.",
+        "0": "None correctly identified."
+      }
+    },
+    "8": {
+      "type": "thread",
+      "subQuestions": {
+        "8a": { "type": "binary", "answer": "Yes — \"Mesto\" is indicated at the top of the first measure, plus the metronome marking ♩= 66." },
+        "8b": { "type": "binary", "answer": "Yes — many legato slurs, ties, and accent marks." },
+        "8c": { "type": "binary", "answer": "Tenor clef / C-clef on the fourth line." }
+      }
+    },
+    "9": { "type": "binary", "answer": "Easy (1–2). For a low-pitched instrument. Very few notes. Very simple rhythm." },
+    "10": {
+      "type": "thread",
+      "subQuestions": {
+        "10a": { "type": "binary", "answer": "Yes — the melody \"A♭ G A♭ G\" is present." },
+        "10b": { "type": "binary", "answer": "No — the melody \"G G A♭ B♭\" is NOT present." }
+      }
+    }
+  },
+
+  "2_5": {
+    "0": { "type": "binary", "answer": "Yes" },
+    "1": { "type": "binary", "answer": "Modern notation / Common western notation" },
+    "2": { "type": "binary", "answer": "Home, Sweet Home (John Hartmann)" },
+    "4": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Key signature: one flat (B♭). Suggests F Major or D minor. No accidentals. First notes C and A are part of the F Major tonic chord (F, A, C). Not enough information to draw a firm conclusion. → Conclusion: F Major, Unsure.",
+        "4": "Key signature: one flat (B♭). Reasoning not completely correct. → Conclusion: F Major, Unsure.",
+        "3": "Key signature: one flat (B♭). → Conclusion: F Major or D minor, with (incorrect) certainty.",
+        "2": "Key signature mistaken by one symbol (e.g., two flats: B♭, E♭).",
+        "1": "Key signature is mistaken.",
+        "0": "Model admits they do not know and provides no clear answer."
+      }
+    },
+    "5": {
+      "type": "ranking",
+      "rubric": {
+        "5": "If image shows \"CORNET in A\": correctly identifies cornet in A, noting the first 7 measures are silent (accompaniment expected). — If NOT: Notation simple. Treble clef. First 7 measures are silent → should have accompaniment. Notes within treble range. → Conclusion: Soloist score / individual part / with accompaniment.",
+        "4": "Provides the previous arguments. Does not mention an incorrect instrument and is very explicit about having doubts.",
+        "3": "Provides the previous arguments. Mentions a plausible instrument (woodwinds, violin) but with explicit doubts.",
+        "2": "Does or does not mention the previous arguments, but provides a very clear and certain answer.",
+        "1": "Provides a very clear and certain answer without argumentation.",
+        "0": "No answer."
+      }
+    },
+    "6": { "type": "binary", "answer": "4/4, notated as a C at the beginning of the staff" },
+    "7": {
+      "type": "ranking",
+      "rubric": {
+        "5": "Expected answers: Quarter note → Yes, Whole note → No, Crescendo → No (but there is a decrescendo), C major chord → No, Quarter rest → Yes. (5/5 correct)",
+        "4": "4 out of 5 symbols correctly identified.",
+        "3": "3 out of 5 symbols correctly identified.",
+        "2": "2 out of 5 symbols correctly identified.",
+        "1": "1 out of 5 symbols correctly identified.",
+        "0": "None correctly identified."
+      }
+    },
+    "8": {
+      "type": "thread",
+      "subQuestions": {
+        "8a": { "type": "binary", "answer": "Yes — \"Moderato\" and later \"Andantino\" are clearly indicated." },
+        "8b": { "type": "binary", "answer": "Yes — some legato slurs and staccato dots." },
+        "8c": { "type": "binary", "answer": "Treble clef / G-clef." }
+      }
+    },
+    "9": { "type": "binary", "answer": "Medium easy (1–3). Notes within typical treble range. Changing/varied rhythm." },
+    "10": {
+      "type": "thread",
+      "subQuestions": {
+        "10a": { "type": "binary", "answer": "Yes — the melody \"C C A C B♭\" is present." },
+        "10b": { "type": "binary", "answer": "No — the melody \"C B♭ A G B♭\" is NOT present." }
+      }
+    }
+  }
+}

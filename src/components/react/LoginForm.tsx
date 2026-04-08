@@ -42,7 +42,7 @@ export function LoginForm() {
       {/* Ambient glow behind card */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full bg-amber-500/[0.06] blur-[100px] pointer-events-none" />
 
-      <div className="relative w-full max-w-sm z-10">
+      <div className="relative w-full max-w-[400px] z-10">
         <BlurFade delay={0} duration={0.5}>
           <ShineBorder
             borderRadius={22}
@@ -50,15 +50,15 @@ export function LoginForm() {
             duration={20}
             shineColor={["rgba(200,168,90,0.15)", "rgba(200,168,90,0.05)", "rgba(200,168,90,0.15)"]}
           >
-            <div className="card-glass rounded-[22px] p-10">
+            <div className="card-glass rounded-[28px] p-12">
 
               {/* Branding */}
               <BlurFade delay={0.05} duration={0.45}>
-                <div className="mb-8">
+                <div className="mb-10">
                   <div className="flex items-center gap-3 mb-2.5">
-                    <div className="flex items-center justify-center w-9 h-9 rounded-xl icon-badge-amber border shrink-0">
+                    <div className="flex items-center justify-center w-11 h-11 rounded-2xl icon-badge-amber border shrink-0">
                       <svg
-                        className="w-4.5 h-4.5"
+                        className="w-5 h-5"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -71,11 +71,11 @@ export function LoginForm() {
                         />
                       </svg>
                     </div>
-                    <h1 className="font-serif text-[1.75rem] font-normal tracking-tight text-surface-100 leading-tight">
+                    <h1 className="font-serif text-[2.25rem] font-light tracking-tight text-surface-100 leading-[1.15]">
                       Music LLM Eval
                     </h1>
                   </div>
-                  <p className="text-sm text-surface-400 font-serif italic pl-0.5">
+                  <p className="text-sm text-surface-500 font-serif italic pl-0.5 mt-1">
                     Evaluación de modelos · OMR
                   </p>
                 </div>
@@ -92,7 +92,7 @@ export function LoginForm() {
                   <div>
                     <label
                       htmlFor="key-input"
-                      className="block text-sm text-surface-400 mb-1.5"
+                      className="block text-[13px] font-medium text-surface-500 mb-2 tracking-wide"
                     >
                       Clave de acceso
                     </label>
@@ -104,7 +104,7 @@ export function LoginForm() {
                       onKeyDown={handleKeyDown}
                       placeholder="Introduce tu clave..."
                       disabled={loading}
-                      className="w-full px-4 py-3 bg-surface-850 border border-surface-700 rounded-xl text-surface-200 placeholder-surface-600 focus:outline-none focus:border-amber-500/60 focus:ring-2 focus:ring-amber-500/15 disabled:opacity-50 text-sm transition-all font-mono"
+                      className="w-full px-4 h-[46px] bg-surface-850 border border-surface-700 rounded-xl text-surface-300 placeholder-surface-600 focus:outline-none focus:border-accent-500/50 focus:ring-2 focus:ring-accent-500/10 disabled:opacity-50 text-sm transition-all font-mono"
                     />
                   </div>
 
@@ -138,7 +138,7 @@ export function LoginForm() {
                   <button
                     onClick={handleLogin}
                     disabled={loading}
-                    className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-full bg-accent-500 hover:bg-accent-600 active:scale-[0.98] text-white text-sm font-medium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                    className="inline-flex items-center justify-center gap-2 w-full h-[46px] rounded-full bg-accent-500 hover:bg-accent-600 active:scale-[0.98] text-white text-sm font-medium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
                   >
                     {loading ? (
                       <span className="inline-flex items-center justify-center gap-2">
@@ -169,7 +169,7 @@ export function LoginForm() {
 
               {/* Footer hint */}
               <BlurFade delay={0.25} duration={0.4}>
-                <p className="mt-6 text-center text-[13px] text-surface-600">
+                <p className="mt-8 text-center text-[12px] text-surface-500 tracking-wide">
                   Acceso restringido a evaluadores autorizados
                 </p>
               </BlurFade>

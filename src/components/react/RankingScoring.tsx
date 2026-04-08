@@ -25,7 +25,7 @@ export function RankingScoring({ score, onChange }: RankingScoringProps) {
   return (
     <div className="flex flex-col gap-2">
       {/* Segmented control */}
-      <div className="flex bg-surface-850 rounded-lg p-0.5 gap-0.5">
+      <div className="flex bg-surface-850 rounded-xl p-1 gap-1">
         {scores.map((value) => {
           const isActive = score === value;
           return (
@@ -35,10 +35,10 @@ export function RankingScoring({ score, onChange }: RankingScoringProps) {
               onClick={() => onChange(value)}
               title={SCORE_LABELS[value]}
               className={cn(
-                "flex-1 h-8 flex items-center justify-center rounded-md text-[13px] font-semibold cursor-pointer border transition-all duration-150 relative",
+                "flex-1 h-11 flex items-center justify-center rounded-lg text-[13px] font-medium cursor-pointer border transition-all duration-300 relative",
                 isActive
                   ? getActiveClass(value)
-                  : "bg-transparent text-surface-500 border-transparent hover:text-surface-200"
+                  : "bg-transparent text-surface-500 border-transparent hover:text-surface-300"
               )}
             >
               {isActive && (

@@ -119,7 +119,8 @@ export async function resetEvaluatorKey(id: string): Promise<string | null> {
 export async function getAllSampleAssignments(): Promise<Array<{ image_filename: string; evaluator_id: string; evaluator_name: string }>> {
   const { data, error } = await getClient()
     .from('sample_assignments')
-    .select('image_filename, evaluator_id, evaluators(name)');
+    .select('image_filename, evaluator_id, evaluators(name)')
+    .order('image_filename', { ascending: true });
   if (error || !data) return [];
   return (data as any[]).map((row) => ({
     image_filename: row.image_filename,
@@ -131,15 +132,19 @@ export async function getAllSampleAssignments(): Promise<Array<{ image_filename:
 export async function assignImage(imageFilename: string, evaluatorId: string): Promise<boolean> {
   const { error } = await getClient()
     .from('sample_assignments')
-    .upsert({ image_filename: imageFilename, evaluator_id: evaluatorId }, { onConflict: 'image_filename' });
+    .upsert(
+      { image_filename: imageFilename, evaluator_id: evaluatorId },
+      { onConflict: 'evaluator_id,image_filename' }
+    );
   return !error;
 }
 
-export async function unassignImage(imageFilename: string): Promise<boolean> {
+export async function unassignImage(imageFilename: string, evaluatorId: string): Promise<boolean> {
   const { error } = await getClient()
     .from('sample_assignments')
     .delete()
-    .eq('image_filename', imageFilename);
+    .eq('image_filename', imageFilename)
+    .eq('evaluator_id', evaluatorId);
   return !error;
 }
 

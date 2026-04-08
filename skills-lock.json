@@ -1,6 +1,16 @@
 {
   "version": 1,
   "skills": {
+    "apple-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "computedHash": "cd8ebe89688d7fb36c838618d1a1847d645a721b231d2a82c746d4d22003b77c"
+    },
+    "elevated-design": {
+      "source": "nitinm21/youtube_summarizer",
+      "sourceType": "github",
+      "computedHash": "b12a76db49edbad3fe59698fc25bf3b2343473f023026ce3ee219c4f6ee63427"
+    },
     "frontend-design": {
       "source": "anthropics/skills",
       "sourceType": "github",

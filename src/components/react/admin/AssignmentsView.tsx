@@ -26,14 +26,16 @@ type FilterMode = "all" | "assigned" | "unassigned";
 export function AssignmentsView({ responsesData, assignments, evaluators, onRefresh }: Props) {
   const [saving, setSaving] = useState<string | null>(null);
   const [filter, setFilter] = useState<FilterMode>("all");
+  // Per-image: which evaluator is selected in the "add" dropdown
+  const [addSelections, setAddSelections] = useState<Record<string, string>>({});
 
+  // Map: image_filename → list of assigned evaluators
   const assignmentMap = useMemo(() => {
-    const map = new Map<string, { evaluator_id: string; evaluator_name: string }>();
+    const map = new Map<string, { evaluator_id: string; evaluator_name: string }[]>();
     for (const a of assignments) {
-      map.set(a.image_filename, {
-        evaluator_id: a.evaluator_id,
-        evaluator_name: a.evaluator_name,
-      });
+      const existing = map.get(a.image_filename) ?? [];
+      existing.push({ evaluator_id: a.evaluator_id, evaluator_name: a.evaluator_name });
+      map.set(a.image_filename, existing);
     }
     return map;
   }, [assignments]);
@@ -60,13 +62,19 @@ export function AssignmentsView({ responsesData, assignments, evaluators, onRefr
   // Only evaluadores and duales can be assigned images (not pure administradores)
   const assignable = evaluators.filter((e) => e.role !== "administrador");
 
-  async function handleChange(imageFilename: string, evaluatorId: string) {
+  async function handleAdd(imageFilename: string) {
+    const evaluatorId = addSelections[imageFilename];
+    if (!evaluatorId) return;
     setSaving(imageFilename);
-    if (!evaluatorId) {
-      await unassignImage(imageFilename);
-    } else {
-      await assignImage(imageFilename, evaluatorId);
-    }
+    await assignImage(imageFilename, evaluatorId);
+    setAddSelections((prev) => ({ ...prev, [imageFilename]: "" }));
+    setSaving(null);
+    onRefresh();
+  }
+
+  async function handleRemove(imageFilename: string, evaluatorId: string) {
+    setSaving(`${imageFilename}:${evaluatorId}`);
+    await unassignImage(imageFilename, evaluatorId);
     setSaving(null);
     onRefresh();
   }
@@ -134,7 +142,7 @@ export function AssignmentsView({ responsesData, assignments, evaluators, onRefr
         <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-surface-700">
-              {["Imagen", "Estado", "Evaluador asignado"].map((h) => (
+              {["Imagen", "Estado", "Evaluadores asignados"].map((h) => (
                 <th
                   key={h}
                   className="py-2 px-3 text-left text-surface-500 font-medium uppercase tracking-widest"
@@ -153,23 +161,26 @@ export function AssignmentsView({ responsesData, assignments, evaluators, onRefr
               </tr>
             )}
             {filteredImages.map((img) => {
-              const current = assignmentMap.get(img);
-              const isSaving = saving === img;
+              const current = assignmentMap.get(img) ?? [];
+              const assignedIds = new Set(current.map((a) => a.evaluator_id));
+              const available = assignable.filter((e) => !assignedIds.has(e.id));
+              const isAnySaving = saving === img || current.some((a) => saving === `${img}:${a.evaluator_id}`);
+
               return (
                 <tr
                   key={img}
                   className={`border-b border-surface-800 transition-colors ${
-                    isSaving ? "opacity-50" : "hover:bg-surface-800/40"
+                    isAnySaving ? "opacity-50" : "hover:bg-surface-800/40"
                   }`}
                 >
                   {/* Image filename */}
-                  <td className="py-3 px-3">
+                  <td className="py-3 px-3 align-top">
                     <span className="font-mono text-surface-300">{img}</span>
                   </td>
 
                   {/* Status badge */}
-                  <td className="py-3 px-3">
-                    {current ? (
+                  <td className="py-3 px-3 align-top">
+                    {current.length > 0 ? (
                       <span className="inline-flex items-center rounded-full border border-teal-400/20 bg-teal-400/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-teal-400">
                         Asignada
                       </span>
@@ -180,24 +191,65 @@ export function AssignmentsView({ responsesData, assignments, evaluators, onRefr
                     )}
                   </td>
 
-                  {/* Evaluator select */}
-                  <td className="py-3 px-3">
-                    <div className="flex items-center gap-2">
-                      <select
-                        value={current?.evaluator_id ?? ""}
-                        onChange={(e) => handleChange(img, e.target.value)}
-                        disabled={isSaving}
-                        className="text-xs bg-surface-800 border border-surface-700 rounded-lg px-2 py-1.5 text-surface-200 focus:outline-none focus:border-amber-500/50 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed min-w-[160px]"
-                      >
-                        <option value="">Sin asignar</option>
-                        {assignable.map((ev) => (
-                          <option key={ev.id} value={ev.id}>
-                            {ev.name}
-                          </option>
-                        ))}
-                      </select>
-                      {isSaving && (
-                        <span className="text-[10px] text-surface-600 italic">Guardando...</span>
+                  {/* Evaluators list + add */}
+                  <td className="py-3 px-3 align-top">
+                    <div className="flex flex-col gap-2">
+                      {/* Chips for each assigned evaluator */}
+                      {current.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5">
+                          {current.map((a) => {
+                            const isRemoving = saving === `${img}:${a.evaluator_id}`;
+                            return (
+                              <span
+                                key={a.evaluator_id}
+                                className="inline-flex items-center gap-1 rounded-full border border-surface-600 bg-surface-800 px-2 py-0.5 text-[11px] text-surface-300"
+                              >
+                                {a.evaluator_name}
+                                <button
+                                  onClick={() => handleRemove(img, a.evaluator_id)}
+                                  disabled={isRemoving || isAnySaving}
+                                  title="Quitar evaluador"
+                                  className="ml-0.5 text-surface-500 hover:text-red-400 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed leading-none"
+                                >
+                                  ×
+                                </button>
+                              </span>
+                            );
+                          })}
+                        </div>
+                      )}
+
+                      {/* Add evaluator row */}
+                      {available.length > 0 && (
+                        <div className="flex items-center gap-2">
+                          <select
+                            value={addSelections[img] ?? ""}
+                            onChange={(e) =>
+                              setAddSelections((prev) => ({ ...prev, [img]: e.target.value }))
+                            }
+                            disabled={isAnySaving}
+                            className="text-xs bg-surface-800 border border-surface-700 rounded-lg px-2 py-1.5 text-surface-400 focus:outline-none focus:border-amber-500/50 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed min-w-35"
+                          >
+                            <option value="">+ Añadir evaluador</option>
+                            {available.map((ev) => (
+                              <option key={ev.id} value={ev.id}>
+                                {ev.name}
+                              </option>
+                            ))}
+                          </select>
+                          {addSelections[img] && (
+                            <button
+                              onClick={() => handleAdd(img)}
+                              disabled={isAnySaving}
+                              className="text-[10px] px-2 py-1.5 rounded-lg bg-teal-500/10 border border-teal-500/30 text-teal-400 hover:bg-teal-500/20 transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed uppercase tracking-wider"
+                            >
+                              Asignar
+                            </button>
+                          )}
+                          {isAnySaving && (
+                            <span className="text-[10px] text-surface-600 italic">Guardando...</span>
+                          )}
+                        </div>
                       )}
                     </div>
                   </td>

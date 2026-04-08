@@ -63,7 +63,7 @@ html.light {
   /* Amber — light theme: dark amber on warm light surfaces */
   --badge-amber-bg:     #FEF3C7;
   --badge-amber-text:   #92400E;
-  --badge-amber-border: #FCD34D;
+  --badge-amber-border: #f59e0b;
 
   /* Teal — light theme: dark teal on pale teal surfaces */
   --badge-teal-bg:     #CCFBF1;
@@ -71,8 +71,8 @@ html.light {
   --badge-teal-border: #5EEAD4;
 
   /* Icon container amber */
-  --icon-amber-bg:     #FEF3C7;
-  --icon-amber-border: #FCD34D;
+  --icon-amber-bg:     #fffbeb;
+  --icon-amber-border: #fcd34d;
   --icon-amber-text:   #92400E;
 
   /* CTA teal */
@@ -80,18 +80,18 @@ html.light {
   --cta-teal-border: #5EEAD4;
   --cta-teal-text:   #0F766E;
 
-  --color-surface-950: #F8FAFC;
-  --color-surface-900: #FFFFFF;
-  --color-surface-850: #F1F5F9;
-  --color-surface-800: #E8EEF4;
-  --color-surface-700: #CBD5E1;
-  --color-surface-600: #94A3B8;
-  --color-surface-500: #64748B;
-  --color-surface-400: #475569;
-  --color-surface-300: #334155;
-  --color-surface-200: #1E293B;
-  --color-surface-100: #0F172A;
-  --color-surface-50:  #020617;
+  --color-surface-950: #f5f5f7;   /* Apple off-white — page bg */
+  --color-surface-900: #ffffff;   /* cards, panels */
+  --color-surface-850: #f2f2f4;   /* muted surfaces, inputs */
+  --color-surface-800: #e8e8ed;   /* hover, tracks, dividers */
+  --color-surface-700: #d2d2d7;   /* borders (Apple standard) */
+  --color-surface-600: #aeaeb2;   /* disabled / placeholder */
+  --color-surface-500: #86868b;   /* terciario (Apple tertiary) */
+  --color-surface-400: #6e6e73;   /* secundario (Apple secondary) */
+  --color-surface-300: #1d1d1f;   /* body text (Apple primary) */
+  --color-surface-200: #1d1d1f;   /* strong body text */
+  --color-surface-100: #1d1d1f;   /* headings */
+  --color-surface-50:  #000000;   /* pure black, rarísimo */
 }
 
 body {
@@ -104,7 +104,7 @@ body {
 
 /* Smooth micro-interactions */
 *, *::before, *::after {
-  transition-duration: 150ms;
+  transition-duration: 300ms;
 }
 
 /* ─── Semantic badge classes ─────────────────────────────────── */
@@ -144,8 +144,8 @@ body {
 .score-active-4 { background-color: rgb(4 47 46 / 0.5);  color: #2dd4bf; border-color: rgb(19 78 74 / 0.5); }
 .score-active-5 { background-color: rgb(19 78 74 / 0.4); color: #5eead4; border-color: rgb(19 78 74 / 0.4); }
 
-html.light .score-active-0 { background-color: #FEE2E2; color: #991B1B; border-color: #FCA5A5; }
-html.light .score-active-1 { background-color: #FFF1F2; color: #B91C1C; border-color: #FECACA; }
+html.light .score-active-0 { background-color: #fee2e2; color: #991b1b; border-color: #f87171; }
+html.light .score-active-1 { background-color: #fef2f2; color: #b91c1c; border-color: #fca5a5; }
 html.light .score-active-2 { background-color: #FFF7ED; color: #9A3412; border-color: #FDBA74; }
 html.light .score-active-3 { background-color: #FFFBEB; color: #92400E; border-color: #FCD34D; }
 html.light .score-active-4 { background-color: #F0FDFA; color: #0F766E; border-color: #5EEAD4; }
@@ -181,7 +181,10 @@ html.light .score-active-5 { background-color: #CCFBF1; color: #0D9488; border-c
 }
 
 html.light .card-elevated {
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 2px 8px rgba(15, 23, 42, 0.04);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 /* ─── Apple frosted glass card ─────────────────────────────── */
@@ -197,12 +200,12 @@ html.light .card-elevated {
 }
 
 html.light .card-glass {
-  background-color: color-mix(in oklch, white 88%, transparent);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow:
-    0 2px 8px rgba(15, 23, 42, 0.06),
-    0 8px 32px rgba(15, 23, 42, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    0 2px 12px rgba(0, 0, 0, 0.06),
+    0 12px 40px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 
@@ -304,6 +307,32 @@ html.light .card-glass {
   border: none;
   border-top: 1px solid var(--color-surface-700);
   margin: 1em 0;
+}
+
+/* ─── Elevated header (Apple-style sticky bar) ──────────── */
+.header-elevated {
+  position: sticky;
+  background-color: color-mix(in oklch, var(--color-surface-900) 92%, transparent);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid color-mix(in oklch, var(--color-surface-600) 30%, transparent);
+}
+
+html.light .header-elevated {
+  background-color: rgba(245, 245, 247, 0.85);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Staff divider — override light ────────────────────── */
+html.light .staff-divider::before {
+  background: linear-gradient(to right, transparent 0%, rgba(200, 168, 90, 0.18) 20%, rgba(200, 168, 90, 0.18) 80%, transparent 100%);
+  box-shadow:
+    0 3px 0 rgba(200, 168, 90, 0.12),
+    0 6px 0 rgba(200, 168, 90, 0.08),
+    0 9px 0 rgba(200, 168, 90, 0.05),
+    0 12px 0 rgba(200, 168, 90, 0.03);
 }
 
 /* ─── MagicUI: shimmer-button keyframes ─────────────────── */
