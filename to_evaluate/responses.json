@@ -9413,5 +9413,129 @@
         }
       ]
     }
+  },
+  "periodico_1.jpeg": {
+    "0": {
+      "question": "Looking at the visual information on the image, can you find any kind of music representation in it? Answer only with \"Yes\", if there is any kind of music representation on the image, or \"No\", if there is not.",
+      "type": "binary",
+      "respuestas": [
+        {
+          "modelo": "anthropic/claude-sonnet-4.6",
+          "respuesta": "No",
+          "tiempo_de_respuesta": 3.443,
+          "input_tokens": 425,
+          "output_tokens": 4,
+          "total_tokens": 429,
+          "coste_usd": null
+        },
+        {
+          "modelo": "moonshotai/kimi-k2.5",
+          "respuesta": " No",
+          "tiempo_de_respuesta": 6.487,
+          "input_tokens": 406,
+          "output_tokens": 163,
+          "total_tokens": 569,
+          "coste_usd": null
+        },
+        {
+          "modelo": "google/gemini-3.1-pro-preview",
+          "respuesta": "No",
+          "tiempo_de_respuesta": 7.182,
+          "input_tokens": 1434,
+          "output_tokens": 205,
+          "total_tokens": 1639,
+          "coste_usd": null
+        },
+        {
+          "modelo": "openai/gpt-5.4",
+          "respuesta": "No",
+          "tiempo_de_respuesta": 1.249,
+          "input_tokens": 404,
+          "output_tokens": 5,
+          "total_tokens": 409,
+          "coste_usd": null
+        },
+        {
+          "modelo": "meta-llama/llama-4-maverick",
+          "respuesta": "No.",
+          "tiempo_de_respuesta": 1.306,
+          "input_tokens": 490,
+          "output_tokens": 3,
+          "total_tokens": 493,
+          "coste_usd": null
+        },
+        {
+          "modelo": "qwen/qwen3.5-397b-a17b",
+          "respuesta": "No",
+          "tiempo_de_respuesta": 7.39,
+          "input_tokens": 419,
+          "output_tokens": 264,
+          "total_tokens": 683,
+          "coste_usd": null
+        }
+      ]
+    }
+  },
+  "fmt.png": {
+    "0": {
+      "question": "Looking at the visual information on the image, can you find any kind of music representation in it? Answer only with \"Yes\", if there is any kind of music representation on the image, or \"No\", if there is not.",
+      "type": "binary",
+      "respuestas": [
+        {
+          "modelo": "anthropic/claude-sonnet-4.6",
+          "respuesta": "No",
+          "tiempo_de_respuesta": 2.373,
+          "input_tokens": 702,
+          "output_tokens": 4,
+          "total_tokens": 706,
+          "coste_usd": null
+        },
+        {
+          "modelo": "openai/gpt-5.4",
+          "respuesta": "No",
+          "tiempo_de_respuesta": 1.651,
+          "input_tokens": 641,
+          "output_tokens": 5,
+          "total_tokens": 646,
+          "coste_usd": null
+        },
+        {
+          "modelo": "moonshotai/kimi-k2.5",
+          "respuesta": "No",
+          "tiempo_de_respuesta": 70.218,
+          "input_tokens": 681,
+          "output_tokens": 2345,
+          "total_tokens": 3026,
+          "coste_usd": null
+        },
+        {
+          "modelo": "google/gemini-3.1-pro-preview",
+          "respuesta": "No",
+          "tiempo_de_respuesta": 11.576,
+          "input_tokens": 1368,
+          "output_tokens": 302,
+          "total_tokens": 1670,
+          "coste_usd": null
+        },
+        {
+          "modelo": "meta-llama/llama-4-maverick",
+          "respuesta": "Yes.",
+          "tiempo_de_respuesta": 1.15,
+          "input_tokens": 1212,
+          "output_tokens": 3,
+          "total_tokens": 1215,
+          "coste_usd": null
+        },
+        {
+          "modelo": "qwen/qwen3.5-397b-a17b",
+          "respuesta": "Yes",
+          "tiempo_de_respuesta": 27.232,
+          "input_tokens": 563,
+          "output_tokens": 2098,
+          "total_tokens": 2661,
+          "coste_usd": null
+        }
+      ]
+    }
   }
 }
