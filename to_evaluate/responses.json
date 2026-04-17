@@ -122,7 +122,7 @@
     },
     "2": {
       "question": "Based solely on the music sheet image provided, can you determine which musical work this excerpt belongs to? Please use the melody's rhythmic patterns, note sequences, and any other musical clues to make your deduction.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "moonshotai/kimi-k2.5",
@@ -796,7 +796,7 @@
     },
     "9": {
       "question": "Based on the musical notation present in the image, how difficult do you think it is to play the excerpt? Rate from 1 to 5, where 1 is easiest and 5 hardest.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "moonshotai/kimi-k2.5",
@@ -1778,7 +1778,7 @@
     },
     "9": {
       "question": "Based on the musical notation present in the image, how difficult do you think it is to play the excerpt? Rate from 1 to 5, where 1 is easiest and 5 hardest.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "moonshotai/kimi-k2.5",
@@ -2086,7 +2086,7 @@
     },
     "2": {
       "question": "Based solely on the music sheet image provided, can you determine which musical work this excerpt belongs to? Please use the melody's rhythmic patterns, note sequences, and any other musical clues to make your deduction.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "moonshotai/kimi-k2.5",
@@ -2760,7 +2760,7 @@
     },
     "9": {
       "question": "Based on the musical notation present in the image, how difficult do you think it is to play the excerpt? Rate from 1 to 5, where 1 is easiest and 5 hardest.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "google/gemini-3.1-pro-preview",
@@ -3068,7 +3068,7 @@
     },
     "2": {
       "question": "Based solely on the music sheet image provided, can you determine which musical work this excerpt belongs to? Please use the melody's rhythmic patterns, note sequences, and any other musical clues to make your deduction.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "google/gemini-3.1-pro-preview",
@@ -3742,7 +3742,7 @@
     },
     "9": {
       "question": "Based on the musical notation present in the image, how difficult do you think it is to play the excerpt? Rate from 1 to 5, where 1 is easiest and 5 hardest.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "google/gemini-3.1-pro-preview",
@@ -4050,7 +4050,7 @@
     },
     "2": {
       "question": "Based solely on the music sheet image provided, can you determine which musical work this excerpt belongs to? Please use the melody's rhythmic patterns, note sequences, and any other musical clues to make your deduction.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "google/gemini-3.1-pro-preview",
@@ -4724,7 +4724,7 @@
     },
     "9": {
       "question": "Based on the musical notation present in the image, how difficult do you think it is to play the excerpt? Rate from 1 to 5, where 1 is easiest and 5 hardest.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "openai/gpt-5.4",
@@ -5032,7 +5032,7 @@
     },
     "2": {
       "question": "Based solely on the music sheet image provided, can you determine which musical work this excerpt belongs to? Please use the melody's rhythmic patterns, note sequences, and any other musical clues to make your deduction.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "openai/gpt-5.4",
@@ -5706,7 +5706,7 @@
     },
     "9": {
       "question": "Based on the musical notation present in the image, how difficult do you think it is to play the excerpt? Rate from 1 to 5, where 1 is easiest and 5 hardest.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "openai/gpt-5.4",
@@ -6014,7 +6014,7 @@
     },
     "2": {
       "question": "Based solely on the music sheet image provided, can you determine which musical work this excerpt belongs to? Please use the melody's rhythmic patterns, note sequences, and any other musical clues to make your deduction.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "openai/gpt-5.4",
@@ -6688,7 +6688,7 @@
     },
     "9": {
       "question": "Based on the musical notation present in the image, how difficult do you think it is to play the excerpt? Rate from 1 to 5, where 1 is easiest and 5 hardest.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "openai/gpt-5.4",
@@ -6996,7 +6996,7 @@
     },
     "2": {
       "question": "Based solely on the music sheet image provided, can you determine which musical work this excerpt belongs to? Please use the melody's rhythmic patterns, note sequences, and any other musical clues to make your deduction.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "openai/gpt-5.4",
@@ -7505,6 +7505,15 @@
               "output_tokens": 489,
               "total_tokens": 1061,
               "coste_usd": null
+            },
+            {
+              "modelo": "qwen/qwen3.5-397b-a17b",
+              "respuesta": "Yes, there is information about the speed. Above the first measure on the left side, the tempo marking **\"Allegretto\"** is visible. This indicates that the piece should be played at a moderately fast tempo.",
+              "tiempo_de_respuesta": 5.025,
+              "input_tokens": 522,
+              "output_tokens": 357,
+              "total_tokens": 879,
+              "coste_usd": null
             }
           ]
         },
@@ -7556,6 +7565,15 @@
               "input_tokens": 583,
               "output_tokens": 2078,
               "total_tokens": 2661,
+              "coste_usd": null
+            },
+            {
+              "modelo": "qwen/qwen3.5-397b-a17b",
+              "respuesta": "Based on the visual evidence in the excerpt, yes, there are several articulation marks indicating how the piece should be played:\n\n*   **Staccato Dots:** There are dots placed above the notes in the running passages (the sixteenth notes) in the first, second, and third measures. There is also a staccato dot above the final chord in the last measure. This indicates these notes should be played short and detached.\n*   **Legato Slurs:** In the first and second measures, underneath the groups of notes marked with a boxed \"3\" (indicating triplets), there are curved lines connecting the notes. These are slurs, indicating that those specific notes should be played smoothly and connected (legato).\n*   **Tenuto/Portato Marks:** In the third measure, above the beamed notes, there appear to be horizontal dashes (tenuto marks) combined with dots. This combination typically indicates *portato* articulation (notes that are slightly separated but sustained, or \"non-legato\").\n*   **Accent Marks:** In the third measure, above the notes, there also appear to be small wedge-shaped marks or dashes that could be interpreted as accents, suggesting emphasis on those beats.\n*   **Dynamics (Performance Instructions):** While strictly dynamic markings rather than articulation, there is a **_f_** (forte) at the beginning indicating loud play, and a **crescendo hairpin** (opening to the right) under the final measure, indicating a gradual increase in volume.\n\nThere do not appear to be any **ties** (curved lines connecting two notes of the same pitch) visible in this excerpt.",
+              "tiempo_de_respuesta": 74.998,
+              "input_tokens": 530,
+              "output_tokens": 3851,
+              "total_tokens": 4381,
               "coste_usd": null
             }
           ]
@@ -7609,6 +7627,15 @@
               "output_tokens": 352,
               "total_tokens": 907,
               "coste_usd": null
+            },
+            {
+              "modelo": "qwen/qwen3.5-397b-a17b",
+              "respuesta": "Based on the image provided, there is a **Treble clef** (also known as the G clef) present at the beginning of the staff on the left side. It is the only clef visible in this excerpt.",
+              "tiempo_de_respuesta": 10.365,
+              "input_tokens": 502,
+              "output_tokens": 298,
+              "total_tokens": 800,
+              "coste_usd": null
             }
           ]
         }
@@ -7616,7 +7643,7 @@
     },
     "9": {
       "question": "Based on the musical notation present in the image, how difficult do you think it is to play the excerpt? Rate from 1 to 5, where 1 is easiest and 5 hardest.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "openai/gpt-5.4",
@@ -7725,6 +7752,15 @@
               "output_tokens": 8015,
               "total_tokens": 8578,
               "coste_usd": null
+            },
+            {
+              "modelo": "qwen/qwen3.5-397b-a17b",
+              "respuesta": "Yes, the melody \"A C# E A G\" can be found in the excerpt, specifically looking at the note names.\n\nHere is the breakdown:\n\n1.  **First Measure:** The excerpt begins with an arpeggio. The visible notes are **A** (second space), **C#** (third space, sharp from key signature), **E** (fourth space), followed by a high **A** (ledger line above the staff), and then a **G** (space above the staff).\n    *   *Note on Accidental:* In this first measure, the **G** is technically a **G#** because of the key signature (three sharps: F#, C#, G#). So the pitch sequence is A - C# - E - A - G#.\n\n2.  **Third Measure:** The same arpeggiated figure appears again.\n    *   It starts with **A - C# - E - A**.\n    *   The next note is a **G**.\n    *   *Evidence for G Natural:* In the final measure (measure 4), there is a note with a sharp in parentheses `( # )`. This is a \"courtesy accidental,\" which is used to remind the musician that the note (G) has returned to the key signature (G#) after being altered previously. This implies that the **G** in the preceding measure (measure 3) was a **G natural**.\n\nTherefore, the specific sequence **A - C# - E - A - G** (with a natural G) appears in the third measure. The sequence with a G# appears in the first measure.",
+              "tiempo_de_respuesta": 99.776,
+              "input_tokens": 507,
+              "output_tokens": 10183,
+              "total_tokens": 10690,
+              "coste_usd": null
             }
           ]
         },
@@ -7776,6 +7812,15 @@
               "input_tokens": 560,
               "output_tokens": 10902,
               "total_tokens": 11462,
+              "coste_usd": null
+            },
+            {
+              "modelo": "qwen/qwen3.5-397b-a17b",
+              "respuesta": "Based on a visual analysis of the provided musical excerpt:\n\n**Yes**, the melody sequence \"**A C# A C# E**\" can be found in the excerpt.\n\nHere is the breakdown:\n1.  **Key Signature:** The piece has four sharps (F#, C#, G#, D#), which means any **C** note is played as **C#**.\n2.  **Location:** The sequence appears in the **third measure** (the third bar from the left).\n3.  **Visual Analysis:**\n    *   The measure begins with an eighth rest.\n    *   Following the rest, there is a beamed group of notes.\n    *   The first note is on the second space (**A**).\n    *   The second note is on the third space (**C#**).\n    *   The third note returns to the second space (**A**).\n    *   The fourth note goes back up to the third space (**C#**).\n    *   The fifth note is on the fourth space (**E**).\n\nThis creates the specific melodic contour of **A - C# - A - C# - E**.",
+              "tiempo_de_respuesta": 85.103,
+              "input_tokens": 508,
+              "output_tokens": 9597,
+              "total_tokens": 10105,
               "coste_usd": null
             }
           ]
@@ -7906,7 +7951,7 @@
     },
     "2": {
       "question": "Based solely on the music sheet image provided, can you determine which musical work this excerpt belongs to? Please use the melody's rhythmic patterns, note sequences, and any other musical clues to make your deduction.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "openai/gpt-5.4",
@@ -8415,6 +8460,15 @@
               "output_tokens": 840,
               "total_tokens": 1429,
               "coste_usd": null
+            },
+            {
+              "modelo": "qwen/qwen3.5-397b-a17b",
+              "respuesta": "Yes, there is explicit information about the speed at the top left of the excerpt.\n\n1.  **Tempo/Character Marking:** The word **\"Mesto\"** is written, which is an instruction for the mood and tempo (typically meaning \"sad\" or \"mournful,\" often implying a slower speed).\n2.  **Metronome Marking:** Next to \"Mesto\" in parentheses is the marking **( ♩ = ca 66 )**. This indicates that the speed should be approximately 66 quarter-note beats per minute.",
+              "tiempo_de_respuesta": 6.137,
+              "input_tokens": 504,
+              "output_tokens": 428,
+              "total_tokens": 932,
+              "coste_usd": null
             }
           ]
         },
@@ -8466,6 +8520,15 @@
               "input_tokens": 592,
               "output_tokens": 6158,
               "total_tokens": 6750,
+              "coste_usd": null
+            },
+            {
+              "modelo": "qwen/qwen3.5-397b-a17b",
+              "respuesta": "Based on the visual evidence in the excerpt:\n\nYes, there are articulation marks present:\n\n1.  **Accent Marks (`>`):** There are accent marks (a sideways \"V\" shape) placed above the first note of the first measure and the first note of the third measure. This indicates that these specific notes should be played with emphasis or a strong attack.\n2.  **Slurs:** There are curved lines above the notes in the first and third measures. Since these lines connect notes of different pitches (the note heads are at different vertical positions on the staff), they are **slurs**, indicating that the notes should be played legato (smoothly and connected). It appears there are slurs grouping the first two eighth notes and separate slurs grouping the subsequent quarter and half notes, or potentially one long phrase mark spanning the measure.\n3.  **No Ties or Staccato:** There are no visible ties (which would connect notes of the *same* pitch) and no dots indicating staccato.",
+              "tiempo_de_respuesta": 69.923,
+              "input_tokens": 512,
+              "output_tokens": 5720,
+              "total_tokens": 6232,
               "coste_usd": null
             }
           ]
@@ -8519,6 +8582,15 @@
               "output_tokens": 9409,
               "total_tokens": 9975,
               "coste_usd": null
+            },
+            {
+              "modelo": "qwen/qwen3.5-397b-a17b",
+              "respuesta": "Based on the visual evidence in the image:\n\nThere is one clef present at the beginning of the staff. It is a **C clef** (also known as an **Alto clef**).\n\n*   **Visual Identification:** The symbol is a stylized \"C\" shape (or two curved brackets) centered vertically on the staff.\n*   **Position:** The center of the clef (where the two curves meet) is aligned with the **middle line** (the third line from the bottom). This specific placement designates the middle line as Middle C (C4), which defines it as an Alto clef.\n*   **Context:** This clef is commonly used for the viola.\n\nNo other clefs appear later in the excerpt.",
+              "tiempo_de_respuesta": 158.506,
+              "input_tokens": 485,
+              "output_tokens": 14038,
+              "total_tokens": 14523,
+              "coste_usd": null
             }
           ]
         }
@@ -8526,7 +8598,7 @@
     },
     "9": {
       "question": "Based on the musical notation present in the image, how difficult do you think it is to play the excerpt? Rate from 1 to 5, where 1 is easiest and 5 hardest.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "openai/gpt-5.4",
@@ -8834,7 +8906,7 @@
     },
     "2": {
       "question": "Based solely on the music sheet image provided, can you determine which musical work this excerpt belongs to? Please use the melody's rhythmic patterns, note sequences, and any other musical clues to make your deduction.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "openai/gpt-5.4",
@@ -9343,6 +9415,15 @@
               "output_tokens": 476,
               "total_tokens": 1009,
               "coste_usd": null
+            },
+            {
+              "modelo": "qwen/qwen3.5-397b-a17b",
+              "respuesta": "Yes, there is information about the speed. Above the staff at the beginning of the excerpt, the text **\"Moderato. Andantino.\"** is visible.\n\nThese are tempo markings that instruct the performer to play at a moderate, walking pace.",
+              "tiempo_de_respuesta": 5.02,
+              "input_tokens": 457,
+              "output_tokens": 255,
+              "total_tokens": 712,
+              "coste_usd": null
             }
           ]
         },
@@ -9394,6 +9475,15 @@
               "input_tokens": 542,
               "output_tokens": 1723,
               "total_tokens": 2265,
+              "coste_usd": null
+            },
+            {
+              "modelo": "qwen/qwen3.5-397b-a17b",
+              "respuesta": "Based on the visual evidence in the image, yes, there are articulation marks present.\n\n1.  **Legato Slurs:** There are several curved lines (slurs) placed above the notes, indicating that the notes under the curve should be played smoothly and connected (legato).\n    *   In the section marked **\"dolce\"**, there are slurs connecting pairs of notes (specifically over the ascending and descending intervals).\n    *   There is a long slur extending over the rapid run of sixteenth notes (the scale-like passage in the middle-right).\n    *   In the final measure, there appear to be slurs grouping the notes (one over the first group of dotted/eighth notes and another over the subsequent descending notes).\n\n2.  **Expression Marking:** The word **\"dolce.\"** (sweetly) appears below the staff. While technically a dynamic or expression marking, it instructs the performer to play in a soft, gentle, and smooth manner, which reinforces the legato articulation indicated by the slurs.\n\nThere are no visible staccato dots, accents, or tenuto marks in this excerpt.",
+              "tiempo_de_respuesta": 84.973,
+              "input_tokens": 466,
+              "output_tokens": 5446,
+              "total_tokens": 5912,
               "coste_usd": null
             }
           ]
@@ -9447,6 +9537,15 @@
               "output_tokens": 691,
               "total_tokens": 1209,
               "coste_usd": null
+            },
+            {
+              "modelo": "qwen/qwen3.5-397b-a17b",
+              "respuesta": "Based on the image provided, there is a **treble clef** (also known as a G clef) present at the beginning of the staff. No other clefs are visible in this excerpt.",
+              "tiempo_de_respuesta": 4.195,
+              "input_tokens": 439,
+              "output_tokens": 225,
+              "total_tokens": 664,
+              "coste_usd": null
             }
           ]
         }
@@ -9454,7 +9553,7 @@
     },
     "9": {
       "question": "Based on the musical notation present in the image, how difficult do you think it is to play the excerpt? Rate from 1 to 5, where 1 is easiest and 5 hardest.",
-      "type": "binary",
+      "type": "likert",
       "respuestas": [
         {
           "modelo": "openai/gpt-5.4",
@@ -9563,6 +9662,15 @@
               "output_tokens": 9272,
               "total_tokens": 9791,
               "coste_usd": null
+            },
+            {
+              "modelo": "qwen/qwen3.5-397b-a17b",
+              "respuesta": "Yes, the melody \"C C A C B♭\" can be found in the excerpt.\n\nLooking at the music notation from left to right:\n1.  **Clef and Key:** The piece is in the treble clef with a key signature of one flat (B♭), indicating that all B notes are played as B♭.\n2.  **Location:** The sequence appears in the second measure (after the double bar line), under the expression marking *dolce*.\n3.  **Note-by-note analysis:**\n    *   The first two notes are beamed eighth notes situated on the first ledger line below the staff, which corresponds to **Middle C (C4)**. This gives the starting \"**C C**\".\n    *   The next note is in the second space of the staff, which is an **A (A4)**.\n    *   The following note is in the third space of the staff, which is a **C (C5)**.\n    *   The next note is on the middle line (third line) of the staff. Due to the key signature, this **B** is played as a **B♭ (B♭4)**.\n\nTherefore, the sequence of pitches is indeed **C - C - A - C - B♭**.",
+              "tiempo_de_respuesta": 173.395,
+              "input_tokens": 444,
+              "output_tokens": 7806,
+              "total_tokens": 8250,
+              "coste_usd": null
             }
           ]
         },
@@ -9614,6 +9722,15 @@
               "input_tokens": 521,
               "output_tokens": 5573,
               "total_tokens": 6094,
+              "coste_usd": null
+            },
+            {
+              "modelo": "qwen/qwen3.5-397b-a17b",
+              "respuesta": "Yes, the melody \"C B♭ A G B♭\" can be found in the excerpt.\n\nLooking at the music notation from left to right:\n1.  After the initial double bar line and a quarter rest, under the word *\"dolce\"*, the melody begins.\n2.  The first note is a **C** (in the third space).\n3.  The second note is a **B♭** (on the third line, flattened by the key signature).\n4.  The third note is an **A** (in the second space).\n5.  The fourth note is a **G** (on the second line).\n6.  The fifth note is a **B♭** (on the third line).\n\nThis sequence of notes (C - B♭ - A - G - B♭) matches the melody you asked about exactly. It appears as a series of eighth notes (grouped in pairs) followed by a quarter note (or dotted eighth, depending on the exact rhythm interpretation, but the pitch sequence is clear).",
+              "tiempo_de_respuesta": 187.127,
+              "input_tokens": 446,
+              "output_tokens": 9051,
+              "total_tokens": 9497,
               "coste_usd": null
             }
           ]
